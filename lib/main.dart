@@ -1,5 +1,9 @@
+import 'package:ecomerce_app/Features/defult_page/views/defult_page.dart';
+import 'package:ecomerce_app/Features/favourite_tap/views/favourite_tap.dart';
 import 'package:ecomerce_app/Features/home_tap/views/home_tap.dart';
 import 'package:ecomerce_app/Features/login_page/views/login_page.dart';
+import 'package:ecomerce_app/Features/profile_tab/views/profile_tab.dart';
+import 'package:ecomerce_app/Features/prpoduct_tap/views/product_tap.dart';
 import 'package:ecomerce_app/Features/register_page/views/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,8 +29,12 @@ class MyApp extends StatelessWidget {
             HomeTap.id: (context) => HomeTap(),
             LoginPage.id : (context) => LoginPage(),
             RegisterPage.id : (context) => RegisterPage(),
+            ProductTap.id : (context) => ProductTap(),
+            FavouriteTap.id : (context) => FavouriteTap(),
+            ProfileTab.id : (context) => ProfileTab(),
+           DefultPage.id : (context) => DefultPage(),
           },
-          initialRoute: RegisterPage.id,
+          initialRoute: DefultPage.id,
         );
       },
     );
