@@ -1,4 +1,4 @@
-import 'package:ecomerce_app/Features/favourite_tap/views/widgets/sections/product_image_section.dart';
+import 'package:ecomerce_app/core/widgets/product_image_section.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_product.dart';
 import 'package:ecomerce_app/core/widgets/cart_button.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,13 @@ class ProductDetailsSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('Nike Air Jordon'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Nike Air Jordon'),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.delete_outlined,size: 24,color: Colors.black,))
+                  ],
+                ),
                 SizedBox(
                   height: height * 0.01,
                 ),

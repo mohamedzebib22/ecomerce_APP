@@ -1,5 +1,4 @@
 import 'package:ecomerce_app/Features/login_page/views/widgets/login_page_body.dart';
-import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -15,7 +14,7 @@ class LoginPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.02, vertical: height * 0.02),
         child: SingleChildScrollView(
-          child: LoginPageBody()
+          child: LoginPageBody(onTap: () {  },)
         ),
       ),
     );

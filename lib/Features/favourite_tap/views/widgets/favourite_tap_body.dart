@@ -1,7 +1,4 @@
 import 'package:ecomerce_app/Features/favourite_tap/views/widgets/sections/product_details_section.dart';
-import 'package:ecomerce_app/Features/favourite_tap/views/widgets/sections/product_image_section.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_product.dart';
-import 'package:ecomerce_app/core/widgets/cart_button.dart';
 import 'package:ecomerce_app/core/widgets/custome_search_and_cart.dart';
 import 'package:flutter/material.dart';
 

@@ -1,3 +1,4 @@
+import 'package:ecomerce_app/Features/cart_page/views/cart_page.dart';
 import 'package:ecomerce_app/Features/defult_page/views/defult_page.dart';
 import 'package:ecomerce_app/Features/favourite_tap/views/favourite_tap.dart';
 import 'package:ecomerce_app/Features/home_tap/views/home_tap.dart';
@@ -35,8 +36,9 @@ class MyApp extends StatelessWidget {
             ProfileTab.id : (context) => ProfileTab(),
            DefultPage.id : (context) => DefultPage(),
            ProductDetailsPage.id : (context) => ProductDetailsPage(),
+           CartPage.id : (context) => CartPage(),
           },
-          initialRoute: ProductDetailsPage.id,
+          initialRoute: LoginPage.id,
         );
       },
     );

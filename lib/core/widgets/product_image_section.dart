@@ -14,7 +14,7 @@ class ProductImageSection extends StatelessWidget {
         child: Image.asset(
           'assets/images/productimage.png',
           width: width * .27,
-          height: height * 0.12,
+          height: height * 0.14,
           fit: BoxFit.fill,
         ));
   }

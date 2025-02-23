@@ -5,3 +5,4 @@
  const String minceIcon='assets/images/minceicon.png'; 
  const String plusIcon='assets/images/plusicon.png'; 
  const String addToCart='assets/images/addtocart.png'; 
+ const String checkOut='assets/images/checkout.png'; 

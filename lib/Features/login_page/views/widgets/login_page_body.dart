@@ -2,7 +2,9 @@ import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 
 class LoginPageBody extends StatelessWidget {
-  const LoginPageBody({super.key});
+  const LoginPageBody({super.key, required this.onTap});
+
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +72,7 @@ class LoginPageBody extends StatelessWidget {
         SizedBox(
             height: height * 0.08,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: onTap,
               child: Center(
                 child: Text(
                   'Login',
