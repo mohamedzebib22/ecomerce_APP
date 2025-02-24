@@ -7,10 +7,12 @@ import 'package:ecomerce_app/Features/product_deatils_page/views/product_details
 import 'package:ecomerce_app/Features/profile_tab/views/profile_tab.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/views/product_tap.dart';
 import 'package:ecomerce_app/Features/register_page/views/register_page.dart';
+import 'package:ecomerce_app/core/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
+  configureDependencies();  
   runApp(const MyApp());
 }
 

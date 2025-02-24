@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.02, vertical: height * 0.02),
         child: SingleChildScrollView(
-          child: LoginPageBody(onTap: () {  },)
+          child: LoginPageBody()
         ),
       ),
     );
