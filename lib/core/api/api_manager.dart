@@ -6,8 +6,11 @@ import 'package:injectable/injectable.dart';
 class ApiManager {
   final dio = Dio();
 
-  Future<Response> getData({required String endPoint,Map<String, dynamic>? queryParameters,dynamic data,Options? options,}){
-   return dio.get(ApiConstant.baseUrl+endPoint,queryParameters: queryParameters,options: options,data: data);
+  Future<Response> getData({required String endPoint,Map<String, dynamic>? queryParameters,dynamic data,Options? options,})async{
+   var response = await dio.get(ApiConstant.baseUrl+endPoint,queryParameters: queryParameters,options: Options(
+    validateStatus: (status) => true
+   ),data: data);
+   return response;
   }
   Future<Response> postData({required String endPoint,Map<String, dynamic>? queryParameters,dynamic data,Options? options,}) async{
    
