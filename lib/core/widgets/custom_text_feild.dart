@@ -7,7 +7,7 @@ class CustomTextFeild extends StatelessWidget {
       {super.key,
       required this.hintText,
       this.prefix,
-      this.initialValue,
+      this.text,
       this.sufix,
       this.borderColor = Colors.blue,
       this.maxLines = 1,
@@ -21,7 +21,7 @@ class CustomTextFeild extends StatelessWidget {
 
   MyValidator? validator;
   String hintText;
-  String? initialValue;
+  String? text;
   Widget? prefix;
   Widget? sufix;
   double radius;
@@ -38,7 +38,7 @@ class CustomTextFeild extends StatelessWidget {
     return TextFormField(
       style: TextStyle(color: Colors.black,),
       obscureText: security,
-      initialValue: initialValue,
+      initialValue: text,
       controller: controller,
       onChanged: onChanged,
       validator: validator,

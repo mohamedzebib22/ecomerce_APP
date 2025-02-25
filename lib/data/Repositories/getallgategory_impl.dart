@@ -8,10 +8,10 @@ import 'package:ecomerce_app/domain/Repositories/data_source/remote_data_source/
 import 'package:injectable/injectable.dart';
 
 @Injectable(as:GetAllCategoryRepositories )
-class GetallgategoryandImpl implements GetAllCategoryRepositories{
+class GetallgategoryImpl implements GetAllCategoryRepositories{
   final GetGategoryRemoteDataSource getGategoryRemoteDataSource;
 
-  GetallgategoryandImpl({required this.getGategoryRemoteDataSource});
+  GetallgategoryImpl({required this.getGategoryRemoteDataSource});
   @override
   Future<Either<Faliures, CategoryAndBrandResponseEntity>> getAllGategory() async{
     var either =await getGategoryRemoteDataSource.getAllGategory();

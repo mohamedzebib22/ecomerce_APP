@@ -19,7 +19,7 @@ class HomeTap extends StatefulWidget {
 }
 
 class _HomeTapState extends State<HomeTap> {
-  CategoryCubit viewModel = getIt<CategoryCubit>();
+  CategoryAndBrandCubit viewModel = getIt<CategoryAndBrandCubit>();
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -30,40 +30,53 @@ class _HomeTapState extends State<HomeTap> {
           padding: EdgeInsets.symmetric(
               horizontal: width * 0.02, vertical: height * 0.02),
           child: SingleChildScrollView(
-            child: BlocBuilder<CategoryCubit, CategoryState>(
-              bloc:viewModel..getAllCategory() ,
-              builder: (context, state) {
-                if (state is CategoryLoading){
-                 return Center(child: CircularProgressIndicator(),);
-                }else if (state is CategorySucsess){
-                  return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const CustomeSearchAndCart(),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                     CategoriesItemsSection(
-                      itemCount:state.categoryAndBrandEntity.data!.length, 
-                      getCategoryList: state.categoryAndBrandEntity.data,  
-                    ),
-  
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    const BrandsSectionItems(
-                      itemCount: 20,
-                    )
-                  ],
-                );
-                }else if(state is CategoryFaluire){
-                  Center(child: Text(state.errMessage.errMessage),);
-                }
-                return Container(child: Center(child: Text('Invalid'),),);
-                
-              },
-            ),
-          ),
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const CustomeSearchAndCart(),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              BlocBuilder<CategoryAndBrandCubit, CategoryAndBrandState>(
+                bloc: viewModel..getAllCategory(),
+                builder: (context, state) {
+                  if (state is CategoryLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is CategorySucsess) {
+                    return CategoriesItemsSection(
+                      itemCount: state.categoryAndBrandEntity.data!.length,
+                      getCategoryList: state.categoryAndBrandEntity.data,
+                    );
+                  }
+                  return Container();
+                },
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              BlocBuilder<CategoryAndBrandCubit, CategoryAndBrandState>(
+                bloc: viewModel..getAllCategory(),
+                builder: (context, state) {
+                   if (state is CategoryLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }else if(state is CategorySucsess){
+                    return BrandsSectionItems(
+                      itemCount: state.categoryAndBrandEntity.data?.length??0, 
+                      getBrandList:state.categoryAndBrandEntity.data );
+                    }
+                    else if(state is CategoryFaluire){
+                        return Center(child: Text(state.errMessage.errMessage),);
+                    }
+                    return Container();
+                  }
+                  
+              )
+            ],
+          )),
         ),
       ),
     );

@@ -68,6 +68,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             const Text('Email',
                 style: TextStyle(color: Colors.white, fontSize: 18)),
             CustomTextFeild(
+             
               controller: viewModel.email,
              
               hintText: 'Enter You Email',
@@ -83,6 +84,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               height: height * .04,
             ),
             CustomTextFeild(
+         
               controller: viewModel.password,
           
               hintText: 'Enter You Password',
