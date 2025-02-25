@@ -18,10 +18,10 @@ import '../../data/data_source/remote_data_source/get_all_category_remote_dataso
 import '../../data/Repositories/auth_repository_impl.dart' as _i670;
 import '../../data/Repositories/getallgategory_impl.dart' as _i332;
 import '../../domain/Repositories/auth/auth_repositories.dart' as _i496;
-import '../../domain/Repositories/getCategory/get_all_category.dart' as _i742;
-import '../../domain/Repositories/remote_data_source/auth_remote_datasource.dart'
+import '../../domain/Repositories/getCategory_and_getBrand/get_all_category.dart' as _i742;
+import '../../domain/Repositories/data_source/remote_data_source/auth_remote_datasource.dart'
     as _i449;
-import '../../domain/Repositories/remote_data_source/get_gategory_remote_data_source.dart'
+import '../../domain/Repositories/data_source/remote_data_source/get_gategory_remote_data_source.dart'
     as _i376;
 import '../../domain/use_case/get_category_use_case.dart' as _i75;
 import '../../domain/use_case/login_usecase.dart' as _i151;

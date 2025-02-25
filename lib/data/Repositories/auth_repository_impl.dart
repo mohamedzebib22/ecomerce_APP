@@ -3,7 +3,7 @@ import 'package:ecomerce_app/core/errors/faliures.dart';
 import 'package:ecomerce_app/data/models/auth/auth_respose.dart';
 import 'package:ecomerce_app/domain/Entity/auth_response.dart';
 import 'package:ecomerce_app/domain/Repositories/auth/auth_repositories.dart';
-import 'package:ecomerce_app/domain/Repositories/remote_data_source/auth_remote_datasource.dart';
+import 'package:ecomerce_app/domain/Repositories/data_source/remote_data_source/auth_remote_datasource.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as:AuthRepositories)
