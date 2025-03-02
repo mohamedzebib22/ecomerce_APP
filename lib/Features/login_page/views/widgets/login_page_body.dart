@@ -1,5 +1,6 @@
 import 'package:ecomerce_app/Features/login_page/views/cubit/login_cubit/login_cubit.dart';
 import 'package:ecomerce_app/Features/login_page/views/cubit/login_cubit/login_state.dart';
+import 'package:ecomerce_app/Features/register_page/views/register_page.dart';
 import 'package:ecomerce_app/core/di/di.dart';
 import 'package:ecomerce_app/core/errors/faliures.dart';
 import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
@@ -25,14 +26,14 @@ class _LoginPageBodyState extends State<LoginPageBody> {
     return BlocConsumer<LoginCubit, LoginState>(
       bloc: viewModel,
       listener: (context, state) {
-        if(state is LoginFaliure){
+        if (state is LoginFaliure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.faliures.errMessage),
             ),
           );
           print('=========${state.faliures.errMessage}==========');
-        }else if (state is LoginSucsess){
+        } else if (state is LoginSucsess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('LoginSucseefuly'),
@@ -68,9 +69,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             const Text('Email',
                 style: TextStyle(color: Colors.white, fontSize: 18)),
             CustomTextFeild(
-             
               controller: viewModel.email,
-             
               hintText: 'Enter You Email',
               isFilled: true,
               filledColor: Colors.white,
@@ -84,9 +83,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               height: height * .04,
             ),
             CustomTextFeild(
-         
               controller: viewModel.password,
-          
               hintText: 'Enter You Password',
               isFilled: true,
               filledColor: Colors.white,
@@ -108,18 +105,28 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             ),
             SizedBox(
                 height: height * 0.08,
-                child: state is LoginLoading ? Center(child: CircularProgressIndicator(),) : 
-                ElevatedButton(
-                  onPressed: () {
-                    viewModel.login(context);
-                  },
-                  child: Center(
-                    child: Text(
-                      'Login',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ))
+                child: state is LoginLoading
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ElevatedButton(
+                        onPressed: () {
+                          viewModel.login(context);
+                        },
+                        child:const Center(
+                          child: Text(
+                            'Login',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      )),
+
+              Row(children: [
+                Text('Don’t have an account?' ,style: TextStyle(color: Colors.white,fontSize: 18),),
+                 TextButton(onPressed: (){
+                  Navigator.pushReplacementNamed(context, RegisterPage.id);
+                 }, child: Text(' Create Account' ,style: TextStyle(color: Colors.white,fontSize: 18),))
+              ],)
           ],
         );
       },
