@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 class TitleAndPriceSection extends StatelessWidget {
   const TitleAndPriceSection({
-    super.key,
+    super.key, required this.title, required this.price,
   });
-
+  final String title;
+  final num price;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Nike Air Jordon'),
-        Text('EGP 3,500'),
+        SingleChildScrollView(child: Text(title ,maxLines: 1,)),
+        Text('EGP ${price}'),
       ],
     );
   }

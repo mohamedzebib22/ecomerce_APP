@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageProductSection extends StatelessWidget {
   const ImageProductSection({
-    super.key, this.productImageList,
+    super.key,required this.productImageList,
   }); 
-  final productImageList;
+ final List<String> productImageList; 
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +16,9 @@ class ImageProductSection extends StatelessWidget {
         initialPage: 0,
         autoPlayInterval: 3000,
         isLoop: true,
-        children: productImageList);
+        children: productImageList.map((url){
+          return Image.network(url,fit: BoxFit.fill,width: double.infinity,);
+        }).toList()
+        );
   }
 }

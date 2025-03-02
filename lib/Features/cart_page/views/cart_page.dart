@@ -26,7 +26,7 @@ class CartPage extends StatelessWidget {
         child: Column(children: [
           ProductDetails(),
             Spacer(),
-             AddToCartAndCheckOut(imageIcon:checkOut ,)
+             AddToCartAndCheckOut(imageIcon:checkOut, price: 200 ,)
         ],),
       ),
     );

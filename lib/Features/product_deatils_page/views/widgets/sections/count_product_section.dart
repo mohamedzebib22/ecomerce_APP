@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 
 class CountProductSection extends StatelessWidget {
   const CountProductSection({
-    super.key,
+    super.key, required this.solid, required this.rating, required this.quantity,
     
   });
 
- 
+  final num solid;
+  final num rating;
+  final num quantity;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class CountProductSection extends StatelessWidget {
             border: Border.all(color: Colors.blue, width: 1),
           ),
           child: Center(
-            child: Text('3,230 Sold'),
+            child: Text('${solid} Sold'),
           ),
         ),
         Expanded(
@@ -34,8 +37,8 @@ class CountProductSection extends StatelessWidget {
                 Icons.star,
                 color: Colors.yellow,
               ),
-              Text('4.8'),
-              Text('(7500)'),
+              Text('$rating'),
+              Text('(${quantity})'),
               Spacer(),
               CounterWidget(),
             ],
