@@ -27,12 +27,15 @@ import '../../domain/Repositories/data_source/remote_data_source/get_brand_remot
     as _i971;
 import '../../domain/Repositories/data_source/remote_data_source/get_gategory_remote_data_source.dart'
     as _i461;
+import '../../domain/Repositories/get_product/get_product_repositories.dart'
+    as _i723;
 import '../../domain/Repositories/getCategory_and_getBrand/get_all_brand_repo.dart'
     as _i630;
 import '../../domain/Repositories/getCategory_and_getBrand/get_all_category.dart'
     as _i429;
 import '../../domain/use_case/get_brand_use_case.dart' as _i808;
 import '../../domain/use_case/get_category_use_case.dart' as _i75;
+import '../../domain/use_case/get_product_use_case.dart' as _i374;
 import '../../domain/use_case/login_usecase.dart' as _i151;
 import '../../domain/use_case/register_use_case.dart' as _i78;
 import '../../Features/home_tap/cubits/cubit/category_cubit.dart' as _i299;
@@ -54,6 +57,8 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
+    gh.factory<_i374.GetProductUseCase>(() => _i374.GetProductUseCase(
+        getProductRepositories: gh<_i723.GetProductRepositories>()));
     gh.factory<_i971.GetAllBrandRemoteDatasource>(() =>
         _i894.GetAllBrandRemoteDataSourceImpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -80,8 +85,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i433.LoginCubit(gh<_i151.LoginUsecase>()));
     gh.factory<_i456.RegisterCubit>(
         () => _i456.RegisterCubit(gh<_i78.RegisterUseCase>()));
-    gh.factory<_i299.CategoryAndBrandCubit>(
-        () => _i299.CategoryAndBrandCubit(gh<_i75.GetCategoryUseCase>()));
+    gh.factory<_i299.CategoryAndBrandCubit>(() => _i299.CategoryAndBrandCubit(
+          gh<_i75.GetCategoryUseCase>(),
+          gh<_i808.GetBrandUseCase>(),
+        ));
     return this;
   }
 }

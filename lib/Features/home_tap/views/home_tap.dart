@@ -40,41 +40,29 @@ class _HomeTapState extends State<HomeTap> {
               BlocBuilder<CategoryAndBrandCubit, CategoryAndBrandState>(
                 bloc: viewModel..getAllCategory(),
                 builder: (context, state) {
-                  if (state is CategoryLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state is CategorySucsess) {
-                    return CategoriesItemsSection(
-                      itemCount: state.categoryAndBrandEntity.data!.length,
-                      getCategoryList: state.categoryAndBrandEntity.data,
-                    );
-                  }
-                  return Container();
+                  return viewModel.gategoryList.isEmpty
+                      ?const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : CategoriesItemsSection(
+                          itemCount: viewModel.gategoryList.length,
+                          getCategoryList: viewModel.gategoryList);
                 },
               ),
               SizedBox(
                 height: height * 0.02,
               ),
               BlocBuilder<CategoryAndBrandCubit, CategoryAndBrandState>(
-                bloc: viewModel..getAllCategory(),
-                builder: (context, state) {
-                   if (state is CategoryLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }else if(state is CategorySucsess){
-                    return BrandsSectionItems(
-                      itemCount: state.categoryAndBrandEntity.data?.length??0, 
-                      getBrandList:state.categoryAndBrandEntity.data );
-                    }
-                    else if(state is CategoryFaluire){
-                        return Center(child: Text(state.errMessage.errMessage),);
-                    }
-                    return Container();
-                  }
-                  
-              )
+                  bloc: viewModel..getAllBrands(),
+                  builder: (context, state) {
+                    return viewModel.brandList.isEmpty
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : BrandsSectionItems(
+                            itemCount: viewModel.brandList.length,
+                            getBrandList: viewModel.brandList);
+                  })
             ],
           )),
         ),

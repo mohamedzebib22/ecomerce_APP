@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
            ProductDetailsPage.id : (context) => ProductDetailsPage(),
            CartPage.id : (context) => CartPage(),
           },
-          initialRoute: LoginPage.id,
+          initialRoute: DefultPage.id,
         );
       },
     );
