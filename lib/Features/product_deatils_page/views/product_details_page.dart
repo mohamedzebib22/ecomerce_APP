@@ -1,3 +1,4 @@
+import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
 import 'package:ecomerce_app/core/widgets/add_to_cart_and_checkout.dart';
 import 'package:ecomerce_app/Features/product_deatils_page/views/widgets/sections/count_product_section.dart';
@@ -5,6 +6,7 @@ import 'package:ecomerce_app/Features/product_deatils_page/views/widgets/section
 import 'package:ecomerce_app/Features/product_deatils_page/views/widgets/sections/product_images_section.dart';
 import 'package:ecomerce_app/Features/product_deatils_page/views/widgets/sections/title_and_price_section.dart';
 import 'package:ecomerce_app/core/widgets/const.dart';
+import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +16,7 @@ class ProductDetailsPage extends StatelessWidget {
   static String id = 'ProductDetailsPage';
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments as ProductEntity ;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -32,7 +35,7 @@ class ProductDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ImageProductSection(),
+            ImageProductSection(productImageList:args.images ,),
             SizedBox(height: height*0.02,),
             TitleAndPriceSection(),
             SizedBox(height: height*0.02,),

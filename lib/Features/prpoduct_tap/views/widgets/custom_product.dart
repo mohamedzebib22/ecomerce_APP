@@ -28,22 +28,22 @@ class CustomProduct extends StatelessWidget {
         border: Border.all(color: Colors.blue, width: 1),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: width * 0.44,
             height: height * 0.13,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(product.imageCover ?? 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png'))),
+                    image: NetworkImage(product.imageCover ?? 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png'),fit: BoxFit.fill)),
           ),
           ListTile(
             title: Text(
               product.title ?? '',
+              maxLines: 2,
               style: TextStyle(fontSize: 12),
             ),
-            subtitle: Text(product.title ?? '',
-                style:const TextStyle(fontSize: 10)),
+           
           ),
           CustomPrice(price: product.price ?? 0 ),
           Row(

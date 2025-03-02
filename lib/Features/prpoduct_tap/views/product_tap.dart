@@ -1,3 +1,5 @@
+import 'package:ecomerce_app/Features/home_tap/views/widgets/sections/ads_section.dart';
+import 'package:ecomerce_app/Features/product_deatils_page/views/product_details_page.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_state.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_product.dart';
@@ -6,6 +8,7 @@ import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
 import 'package:ecomerce_app/core/widgets/custome_search_and_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductTap extends StatelessWidget {
   ProductTap({super.key});
@@ -21,6 +24,7 @@ class ProductTap extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.02, vertical: height * 0.02),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CustomeSearchAndCart(),
             BlocBuilder<GetProductCubit, GetProductState>(
@@ -28,15 +32,21 @@ class ProductTap extends StatelessWidget {
               builder: (context, state) {
                 return viewModel.productList.isEmpty ? Center(child: CircularProgressIndicator(),) :
                 Expanded(
+                  
                   child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 2 / 3,
+                        childAspectRatio: 2 /3.2.h,
                       ),
-                      itemCount: 20,
+                      itemCount: viewModel.productList.length,
                       itemBuilder: (context, index) {
-                        return CustomProduct(
-                          product: viewModel.productList[index],
+                        return InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context, ProductDetailsPage.id,arguments: viewModel);
+                          },
+                          child: CustomProduct(
+                            product: viewModel.productList[index],
+                          ),
                         );
                       }),
                 );
