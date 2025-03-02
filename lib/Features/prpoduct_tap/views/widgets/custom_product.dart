@@ -1,18 +1,21 @@
+import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_price.dart';
 import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
+import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:flutter/material.dart';
 
 class CustomProduct extends StatelessWidget {
   const CustomProduct({
     super.key,
-    required this.width,
-    required this.height,
+
+    required this.product,
   });
 
-  final double width;
-  final double height;
-
+  
+  final ProductEntity product;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.symmetric(
           horizontal: width * 0.02, vertical: height * 0.02),
@@ -32,24 +35,24 @@ class CustomProduct extends StatelessWidget {
             height: height * 0.13,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/productimage.png'))),
+                    image: NetworkImage(product.imageCover ?? 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png'))),
           ),
           ListTile(
             title: Text(
-              'Nike Air Jordon',
+              product.title ?? '',
               style: TextStyle(fontSize: 12),
             ),
-            subtitle: Text('Nike shoes flexible for wo..',
-                style: TextStyle(fontSize: 10)),
+            subtitle: Text(product.title ?? '',
+                style:const TextStyle(fontSize: 10)),
           ),
-          CustomPrice(),
+          CustomPrice(price: product.price ?? 0 ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   Text('Review'),
-                  Text('(4.5)'),
+                  Text('(${product.ratingsAverage})'),
                   Icon(
                     Icons.star,
                     color: Colors.yellow,
@@ -61,25 +64,6 @@ class CustomProduct extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class CustomPrice extends StatelessWidget {
-  const CustomPrice({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text('EGP 1,200 '),
-        Text(
-          '2000',
-          style: TextStyle(fontSize: 12),
-        )
-      ],
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_price.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_product.dart';
 import 'package:ecomerce_app/core/widgets/cart_button.dart';
@@ -43,7 +44,7 @@ class ProductDetailsSection extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [CustomPrice(), CartButton(onTap: () {})],
+                  children: [CustomPrice(price: 2000,), CartButton(onTap: () {})],
                 ),
               ],
             ),

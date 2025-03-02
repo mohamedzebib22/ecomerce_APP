@@ -4,11 +4,12 @@ import 'package:ecomerce_app/core/api/api_end_point.dart';
 import 'package:ecomerce_app/core/api/api_manager.dart';
 import 'package:ecomerce_app/core/errors/faliures.dart';
 import 'package:ecomerce_app/data/models/get_product/get_product_dm.dart';
+import 'package:ecomerce_app/domain/Repositories/data_source/remote_data_source/get_product_remote_data_source.dart';
 import 'package:ecomerce_app/domain/Repositories/get_product/get_product_repositories.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as:GetProductRepositories )
-class GetProductRemoteImpl extends GetProductRepositories {
+@Injectable(as:GetProductRemoteDataSource )
+class GetProductRemoteImpl extends GetProductRemoteDataSource {
   final ApiManager apiManager;
 
   GetProductRemoteImpl({required this.apiManager});
