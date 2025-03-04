@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_state.dart';
+import 'package:ecomerce_app/Features/product_tap/cubit/get_product_state.dart';
+import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:ecomerce_app/domain/use_case/get_product_use_case.dart';
 import 'package:ecomerce_app/domain/use_case/post_cart_use_case.dart';
@@ -15,7 +16,7 @@ class GetProductCubit extends Cubit<GetProductState> {
   final GetProductUseCase getProductUseCase;
   final PostCartUseCase postCartUseCase;
   List<ProductEntity> productList=[];
-  
+  int numOfCartItems = 0;
 
   static GetProductCubit get(context) => BlocProvider.of(context);
   getProduct()async{
@@ -35,9 +36,12 @@ class GetProductCubit extends Cubit<GetProductState> {
     return either.fold((error){
       emit(PostProductFaliur(faliures: error));
     }, (response){
-     int numOfCartItems = response.numOfCartItems!.toInt();
+      numOfCartItems = response.numOfCartItems!.toInt();
+
+      var cartItemNumber = CachHelper().saveData(key: 'numOfCartItems', value: numOfCartItems);
       print('===/===/===$numOfCartItems===/===/===');
       emit(PostProductSucsess(postProduct: response));
+      
     });
   }
 }

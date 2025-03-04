@@ -1,4 +1,4 @@
-import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_cubit.dart';
+import 'package:ecomerce_app/Features/product_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
 import 'package:ecomerce_app/core/widgets/add_to_cart_and_checkout.dart';
 import 'package:ecomerce_app/Features/product_deatils_page/views/widgets/sections/count_product_section.dart';

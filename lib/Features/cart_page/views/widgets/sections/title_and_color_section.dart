@@ -1,5 +1,5 @@
-import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_price.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_product.dart';
+import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
+import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_product.dart';
 import 'package:ecomerce_app/core/widgets/counter_widget.dart';
 import 'package:flutter/material.dart';
 

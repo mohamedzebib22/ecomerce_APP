@@ -47,7 +47,7 @@ import '../../domain/use_case/register_use_case.dart' as _i78;
 import '../../Features/home_tap/cubits/cubit/category_cubit.dart' as _i299;
 import '../../Features/login_page/views/cubit/login_cubit/login_cubit.dart'
     as _i433;
-import '../../Features/prpoduct_tap/cubit/get_product_cubit.dart' as _i839;
+import '../../Features/product_tap/cubit/get_product_cubit.dart' as _i839;
 import '../../Features/register_page/views/cubit/register_cubit/register_cubit.dart'
     as _i456;
 import '../api/api_manager.dart' as _i1047;

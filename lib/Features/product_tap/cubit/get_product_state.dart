@@ -33,3 +33,8 @@ class PostProductFaliur extends GetProductState {
   PostProductFaliur({required this.faliures});
 
 }
+// class CartUpdated extends GetProductState {
+//   final int numOfCartItems;
+
+//   CartUpdated({required this.numOfCartItems});
+// }

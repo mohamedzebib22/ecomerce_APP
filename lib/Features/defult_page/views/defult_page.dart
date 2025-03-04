@@ -1,7 +1,7 @@
 import 'package:ecomerce_app/Features/favourite_tap/views/favourite_tap.dart';
 import 'package:ecomerce_app/Features/home_tap/views/home_tap.dart';
 import 'package:ecomerce_app/Features/profile_tab/views/profile_tab.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/views/product_tap.dart';
+import 'package:ecomerce_app/Features/product_tap/views/product_tap.dart';
 import 'package:ecomerce_app/core/widgets/const.dart';
 import 'package:flutter/material.dart';
 

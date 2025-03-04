@@ -1,8 +1,8 @@
 import 'package:ecomerce_app/Features/home_tap/views/widgets/sections/ads_section.dart';
 import 'package:ecomerce_app/Features/product_deatils_page/views/product_details_page.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_cubit.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_state.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_product.dart';
+import 'package:ecomerce_app/Features/product_tap/cubit/get_product_cubit.dart';
+import 'package:ecomerce_app/Features/product_tap/cubit/get_product_state.dart';
+import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_product.dart';
 import 'package:ecomerce_app/core/di/di.dart';
 import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
 import 'package:ecomerce_app/core/widgets/custome_search_and_cart.dart';

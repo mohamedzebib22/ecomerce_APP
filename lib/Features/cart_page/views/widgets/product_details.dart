@@ -10,17 +10,13 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-            
-            decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    border: Border.all(color: Colors.grey, width: 1),
-            ),
-            child: Row(
-    children: [
-      ProductImageSection(),
-      TitleAndColorSection()
-    ],
-            ),
-      );
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.grey, width: 1),
+      ),
+      child: Row(
+        children: [ProductImageSection(), TitleAndColorSection()],
+      ),
+    );
   }
 }

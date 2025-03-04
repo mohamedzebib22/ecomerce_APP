@@ -1,6 +1,6 @@
-import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_price.dart';
+import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
-import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_product.dart';
+import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_product.dart';
 import 'package:ecomerce_app/core/widgets/cart_button.dart';
 import 'package:flutter/material.dart';
 

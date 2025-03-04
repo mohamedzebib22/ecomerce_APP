@@ -33,7 +33,7 @@ class _HomeTapState extends State<HomeTap> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const CustomeSearchAndCart(),
+               CustomeSearchAndCart(),
               SizedBox(
                 height: height * 0.02,
               ),
