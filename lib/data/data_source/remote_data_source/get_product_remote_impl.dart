@@ -41,9 +41,11 @@ class GetProductRemoteImpl extends GetProductRemoteDataSource {
           endPoint: ApiEndPoint.postProduct,
           data: {'productId': id},
           headers: {'token': token});
-      var postProduct = PostCartResponseDm.fromJson(response.data);
+      PostCartResponseDm postProduct = PostCartResponseDm.fromJson(response.data);
       if(response.statusCode! >=200 && response.statusCode! <300){
+        print('****/**$token**********\n*******$id*********');
         return Right(postProduct);
+
       }else{
         return Left(ServerError(errMessage: postProduct.message ?? ''));
       }

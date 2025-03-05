@@ -42,6 +42,7 @@ import '../../domain/use_case/get_brand_use_case.dart' as _i808;
 import '../../domain/use_case/get_category_use_case.dart' as _i75;
 import '../../domain/use_case/get_product_use_case.dart' as _i374;
 import '../../domain/use_case/login_usecase.dart' as _i151;
+import '../../domain/use_case/post_cart_use_case.dart' as _i269;
 import '../../domain/use_case/register_use_case.dart' as _i78;
 import '../../Features/home_tap/cubits/cubit/category_cubit.dart' as _i299;
 import '../../Features/login_page/views/cubit/login_cubit/login_cubit.dart'
@@ -81,18 +82,22 @@ extension GetItInjectableX on _i174.GetIt {
         authRemoteDatasource: gh<_i428.AuthRemoteDatasource>()));
     gh.factory<_i630.GetAllBrandRepo>(() => _i682.GetAllBandsImpl(
         getAllBrandRemoteDataSource: gh<_i971.GetAllBrandRemoteDatasource>()));
-    gh.factory<_i78.RegisterUseCase>(() =>
-        _i78.RegisterUseCase(authRepositories: gh<_i496.AuthRepositories>()));
     gh.factory<_i151.LoginUsecase>(() =>
         _i151.LoginUsecase(authRepositories: gh<_i496.AuthRepositories>()));
+    gh.factory<_i78.RegisterUseCase>(() =>
+        _i78.RegisterUseCase(authRepositories: gh<_i496.AuthRepositories>()));
     gh.factory<_i808.GetBrandUseCase>(() =>
         _i808.GetBrandUseCase(getAllBrandRepo: gh<_i630.GetAllBrandRepo>()));
     gh.factory<_i75.GetCategoryUseCase>(() => _i75.GetCategoryUseCase(
         getAllCategoryRepositories: gh<_i429.GetAllCategoryRepositories>()));
     gh.factory<_i374.GetProductUseCase>(() => _i374.GetProductUseCase(
         getProductRepositories: gh<_i723.GetProductRepositories>()));
-    gh.factory<_i839.GetProductCubit>(
-        () => _i839.GetProductCubit(gh<_i374.GetProductUseCase>()));
+    gh.factory<_i269.PostCartUseCase>(() => _i269.PostCartUseCase(
+        getProductRepositories: gh<_i723.GetProductRepositories>()));
+    gh.factory<_i839.GetProductCubit>(() => _i839.GetProductCubit(
+          gh<_i374.GetProductUseCase>(),
+          gh<_i269.PostCartUseCase>(),
+        ));
     gh.factory<_i433.LoginCubit>(
         () => _i433.LoginCubit(gh<_i151.LoginUsecase>()));
     gh.factory<_i456.RegisterCubit>(

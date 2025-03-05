@@ -45,7 +45,7 @@ class ProductTap extends StatelessWidget {
                             Navigator.pushNamed(context, ProductDetailsPage.id,arguments: viewModel.productList[index]);
                           },
                           child: CustomProduct(
-                            product: viewModel.productList[index],
+                            product: viewModel.productList[index], 
                           ),
                         );
                       }),

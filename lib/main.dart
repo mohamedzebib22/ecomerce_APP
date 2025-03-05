@@ -5,11 +5,13 @@ import 'package:ecomerce_app/Features/home_tap/views/home_tap.dart';
 import 'package:ecomerce_app/Features/login_page/views/login_page.dart';
 import 'package:ecomerce_app/Features/product_deatils_page/views/product_details_page.dart';
 import 'package:ecomerce_app/Features/profile_tab/views/profile_tab.dart';
+import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/views/product_tap.dart';
 import 'package:ecomerce_app/Features/register_page/views/register_page.dart';
 import 'package:ecomerce_app/core/di/di.dart';
 import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main()async {
@@ -23,7 +25,11 @@ void main()async {
     routeName = DefultPage.id;
   }
   configureDependencies();  
-  runApp( EcomerceApp(routeName: routeName,));
+  runApp( MultiBlocProvider(
+    providers: [
+      BlocProvider(create:(context)  => getIt<GetProductCubit>())
+    ],
+    child: EcomerceApp(routeName: routeName,)));
 }
 
 class EcomerceApp extends StatelessWidget {

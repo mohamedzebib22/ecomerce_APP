@@ -1,4 +1,6 @@
+import 'package:ecomerce_app/Features/prpoduct_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/views/widgets/custom_price.dart';
+import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +9,9 @@ class CustomProduct extends StatelessWidget {
   const CustomProduct({
     super.key,
 
-    required this.product,
+    required this.product, 
   });
 
-  
   final ProductEntity product;
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,14 @@ class CustomProduct extends StatelessWidget {
                   ),
                 ],
               ),
-              Image.asset('assets/images/addicon.png'),
+              InkWell(
+                onTap: (){
+                  print('=====${product.id}=====');
+                  var token = CachHelper().getData(key: 'token');
+                  print('=====$token=====');
+                  GetProductCubit.get(context).addToCart(id: product.id??'');
+                },
+                child: Image.asset('assets/images/addicon.png')),
             ],
           )
         ],
