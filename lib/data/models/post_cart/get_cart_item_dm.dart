@@ -1,6 +1,5 @@
 import 'package:ecomerce_app/data/models/get_category_and_brand/get_category_and_brand.dart';
 import 'package:ecomerce_app/data/models/get_product/get_product_dm.dart';
-import 'package:ecomerce_app/data/models/post_cart/post_cart_dm.dart';
 import 'package:ecomerce_app/domain/Entity/get_cart_item_entity.dart';
 
 class GetCartItemResponseDm extends GetCartItemResponseEntity {
@@ -15,15 +14,14 @@ class GetCartItemResponseDm extends GetCartItemResponseEntity {
 
   GetCartItemResponseDm.fromJson(dynamic json) {
     status = json['status'];
-    status = json['message'];
-    status = json['statusMsg'];
+    message = json['message'];
+    statusMsg = json['statusMsg'];
     numOfCartItems = json['numOfCartItems'];
     cartId = json['cartId'];
     data = json['data'] != null ? GetDataCartDm.fromJson(json['data']) : null;
   }
   String? message;
   String? statusMsg;
-
 }
 
 class GetDataCartDm extends GetDataCartEntity {
@@ -43,7 +41,7 @@ class GetDataCartDm extends GetDataCartEntity {
     if (json['products'] != null) {
       products = [];
       json['products'].forEach((v) {
-        products?.add(PostAndGetProductDm.fromJson(v));
+        products?.add(GetCartProductsDm.fromJson(v));
       });
     }
     createdAt = json['createdAt'];
@@ -53,8 +51,25 @@ class GetDataCartDm extends GetDataCartEntity {
   }
 }
 
-class GetCartProductDm extends GetCartProductEntity {
-  GetCartProductDm({
+class GetCartProductsDm extends GetCartProductsEntity {
+  GetCartProductsDm({
+    super.count,
+    super.id,
+    super.product,
+    super.price,
+  });
+
+  GetCartProductsDm.fromJson(dynamic json) {
+    count = json['count'];
+    id = json['_id'];
+    product =
+        json['product'] != null ? CartItemDm.fromJson(json['product']) : null;
+    price = json['price'];
+  }
+}
+
+class CartItemDm extends CartItemEntity {
+  CartItemDm({
     super.subcategory,
     super.id,
     super.title,
@@ -65,7 +80,7 @@ class GetCartProductDm extends GetCartProductEntity {
     super.ratingsAverage,
   });
 
-  GetCartProductDm.fromJson(dynamic json) {
+  CartItemDm.fromJson(dynamic json) {
     if (json['subcategory'] != null) {
       subcategory = [];
       json['subcategory'].forEach((v) {

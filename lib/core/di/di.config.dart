@@ -39,15 +39,18 @@ import '../../domain/Repositories/getCategory_and_getBrand/get_all_brand_repo.da
 import '../../domain/Repositories/getCategory_and_getBrand/get_all_category.dart'
     as _i429;
 import '../../domain/use_case/get_brand_use_case.dart' as _i808;
+import '../../domain/use_case/get_cart_item_use_case.dart' as _i316;
 import '../../domain/use_case/get_category_use_case.dart' as _i75;
 import '../../domain/use_case/get_product_use_case.dart' as _i374;
 import '../../domain/use_case/login_usecase.dart' as _i151;
 import '../../domain/use_case/post_cart_use_case.dart' as _i269;
 import '../../domain/use_case/register_use_case.dart' as _i78;
+import '../../Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_cubit.dart'
+    as _i529;
 import '../../Features/home_tap/cubits/cubit/category_cubit.dart' as _i299;
 import '../../Features/login_page/views/cubit/login_cubit/login_cubit.dart'
     as _i433;
-import '../../Features/product_tap/cubit/get_product_cubit.dart' as _i839;
+import '../../Features/product_tap/cubit/get_product_cubit.dart' as _i867;
 import '../../Features/register_page/views/cubit/register_cubit/register_cubit.dart'
     as _i456;
 import '../api/api_manager.dart' as _i1047;
@@ -90,11 +93,13 @@ extension GetItInjectableX on _i174.GetIt {
         _i808.GetBrandUseCase(getAllBrandRepo: gh<_i630.GetAllBrandRepo>()));
     gh.factory<_i75.GetCategoryUseCase>(() => _i75.GetCategoryUseCase(
         getAllCategoryRepositories: gh<_i429.GetAllCategoryRepositories>()));
+    gh.factory<_i316.GetCartItemUseCase>(() => _i316.GetCartItemUseCase(
+        getProductRepositories: gh<_i723.GetProductRepositories>()));
     gh.factory<_i374.GetProductUseCase>(() => _i374.GetProductUseCase(
         getProductRepositories: gh<_i723.GetProductRepositories>()));
     gh.factory<_i269.PostCartUseCase>(() => _i269.PostCartUseCase(
         getProductRepositories: gh<_i723.GetProductRepositories>()));
-    gh.factory<_i839.GetProductCubit>(() => _i839.GetProductCubit(
+    gh.factory<_i867.GetProductCubit>(() => _i867.GetProductCubit(
           gh<_i374.GetProductUseCase>(),
           gh<_i269.PostCartUseCase>(),
         ));
@@ -106,6 +111,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i75.GetCategoryUseCase>(),
           gh<_i808.GetBrandUseCase>(),
         ));
+    gh.factory<_i529.GetCartProductCubit>(
+        () => _i529.GetCartProductCubit(gh<_i316.GetCartItemUseCase>()));
     return this;
   }
 }

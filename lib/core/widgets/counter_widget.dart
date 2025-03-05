@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class CounterWidget extends StatelessWidget {
   const CounterWidget({
-    super.key,
+    super.key, required this.countItem,
   });
-
+  final num countItem;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -18,7 +18,7 @@ class CounterWidget extends StatelessWidget {
           color: Color(0xff004182),
           borderRadius: BorderRadius.circular(15),
         ),
-        child: const Row(
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ImageIcon(
@@ -26,7 +26,7 @@ class CounterWidget extends StatelessWidget {
               color: Colors.white,
             ),
             Text(
-              '0',
+              '$countItem',
               style: TextStyle(
                 color: Colors.white,
               ),

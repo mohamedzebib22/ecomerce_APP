@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 
 class TitleAndColorSection extends StatelessWidget {
   const TitleAndColorSection({
-    super.key,
+    super.key, required this.title, required this.price, required this.countItem,
     
   });
 
  
-
+  final String title;
+  final num price;
+  final num countItem;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -22,7 +24,7 @@ class TitleAndColorSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Nike Air Jordon'),
+              Text(title,style: TextStyle(fontSize: 8,overflow:TextOverflow.ellipsis ),),
               Icon(Icons.delete_outlined,size: 24,color: Colors.black,)
             ],
           ),
@@ -35,7 +37,7 @@ class TitleAndColorSection extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [CustomPrice(price: 2000,), CounterWidget()],
+            children: [CustomPrice(price: price,), CounterWidget(countItem: countItem,)],
           ),
          
         ],

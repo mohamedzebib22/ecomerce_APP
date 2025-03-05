@@ -48,7 +48,7 @@ class CartDataDm extends CartDataEntity {
   }
 }
 
-class PostAndGetProductDm extends PostAndGetProductEntity {
+class PostAndGetProductDm extends PostProductEntity {
   PostAndGetProductDm({
     super.count,
     super.id,

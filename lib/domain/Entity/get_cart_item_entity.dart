@@ -1,6 +1,7 @@
+import 'package:ecomerce_app/data/models/get_category_and_brand/get_category_and_brand.dart';
+import 'package:ecomerce_app/data/models/get_product/get_product_dm.dart';
 import 'package:ecomerce_app/domain/Entity/category_and_brand_response.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
-import 'package:ecomerce_app/domain/Entity/post_cart_entity.dart';
 
 class GetCartItemResponseEntity {
   GetCartItemResponseEntity({
@@ -10,6 +11,7 @@ class GetCartItemResponseEntity {
     this.data,
   });
 
+  
   String? status;
   num? numOfCartItems;
   String? cartId;
@@ -27,19 +29,33 @@ class GetDataCartEntity {
     this.totalCartPrice,
   });
 
+  
   String? id;
   String? cartOwner;
-  List<PostAndGetProductEntity>? products;
+  List<GetCartProductsEntity>? products;
   String? createdAt;
   String? updatedAt;
   num? v;
   num? totalCartPrice;
 }
 
+class GetCartProductsEntity {
+  GetCartProductsEntity({
+    this.count,
+    this.id,
+    this.product,
+    this.price,
+  });
 
+  
+  num? count;
+  String? id;
+  CartItemEntity? product;
+  num? price;
+}
 
-class GetCartProductEntity {
-  GetCartProductEntity({
+class CartItemEntity {
+  CartItemEntity({
     this.subcategory,
     this.id,
     this.title,
@@ -50,6 +66,7 @@ class GetCartProductEntity {
     this.ratingsAverage,
   });
 
+  
   List<SubcategoryEntity>? subcategory;
   String? id;
   String? title;
