@@ -2,8 +2,8 @@ import 'package:ecomerce_app/domain/Entity/category_and_brand_response.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:ecomerce_app/domain/Entity/post_cart_entity.dart';
 
-class GetCartItemEntity {
-  GetCartItemEntity({
+class GetCartItemResponseEntity {
+  GetCartItemResponseEntity({
     this.status,
     this.numOfCartItems,
     this.cartId,

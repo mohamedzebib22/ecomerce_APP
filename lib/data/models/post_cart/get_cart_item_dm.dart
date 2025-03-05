@@ -3,20 +3,27 @@ import 'package:ecomerce_app/data/models/get_product/get_product_dm.dart';
 import 'package:ecomerce_app/data/models/post_cart/post_cart_dm.dart';
 import 'package:ecomerce_app/domain/Entity/get_cart_item_entity.dart';
 
-class GetCartItemDm extends GetCartItemEntity {
-  GetCartItemDm({
+class GetCartItemResponseDm extends GetCartItemResponseEntity {
+  GetCartItemResponseDm({
     super.status,
     super.numOfCartItems,
     super.cartId,
+    this.message,
+    this.statusMsg,
     super.data,
   });
 
-  GetCartItemDm.fromJson(dynamic json) {
+  GetCartItemResponseDm.fromJson(dynamic json) {
     status = json['status'];
+    status = json['message'];
+    status = json['statusMsg'];
     numOfCartItems = json['numOfCartItems'];
     cartId = json['cartId'];
     data = json['data'] != null ? GetDataCartDm.fromJson(json['data']) : null;
   }
+  String? message;
+  String? statusMsg;
+
 }
 
 class GetDataCartDm extends GetDataCartEntity {

@@ -5,4 +5,5 @@ class ApiEndPoint {
   static String allBrands= 'api/v1/brands';
   static String getProducts= 'api/v1/products';
   static String postProduct= 'api/v1/cart';
+  static String getCartProduct= 'api/v1/cart';
 }
