@@ -1,12 +1,12 @@
-class PostCart {
-  PostCart({
+class PostCartResponseEntity {
+  PostCartResponseEntity({
       this.status, 
       this.message, 
       this.numOfCartItems, 
       this.cartId, 
       this.data,});
 
-  PostCart.fromJson(dynamic json) {
+  PostCartResponseEntity.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
     numOfCartItems = json['numOfCartItems'];
