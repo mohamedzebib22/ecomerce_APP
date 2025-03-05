@@ -37,7 +37,7 @@ class CartDataEntity {
     if (json['products'] != null) {
       products = [];
       json['products'].forEach((v) {
-        products?.add(PostProductEntity.fromJson(v));
+        products?.add(PostAndGetProductEntity.fromJson(v));
       });
     }
     createdAt = json['createdAt'];
@@ -47,7 +47,7 @@ class CartDataEntity {
   }
   String? id;
   String? cartOwner;
-  List<PostProductEntity>? products;
+  List<PostAndGetProductEntity>? products;
   String? createdAt;
   String? updatedAt;
   num? v;
@@ -55,14 +55,14 @@ class CartDataEntity {
 
 }
 
-class PostProductEntity {
-  PostProductEntity({
+class PostAndGetProductEntity {
+  PostAndGetProductEntity({
       this.count, 
       this.id, 
       this.product, 
       this.price,});
 
-  PostProductEntity.fromJson(dynamic json) {
+  PostAndGetProductEntity.fromJson(dynamic json) {
     count = json['count'];
     id = json['_id'];
     product = json['product'];

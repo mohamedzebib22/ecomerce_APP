@@ -38,7 +38,7 @@ class CartDataDm extends CartDataEntity {
     if (json['products'] != null) {
       products = [];
       json['products'].forEach((v) {
-        products?.add(PostProductDm.fromJson(v));
+        products?.add(PostAndGetProductDm.fromJson(v));
       });
     }
     createdAt = json['createdAt'];
@@ -48,15 +48,15 @@ class CartDataDm extends CartDataEntity {
   }
 }
 
-class PostProductDm extends PostProductEntity {
-  PostProductDm({
+class PostAndGetProductDm extends PostAndGetProductEntity {
+  PostAndGetProductDm({
     super.count,
     super.id,
     super.product,
     super.price,
   });
 
-  PostProductDm.fromJson(dynamic json) {
+  PostAndGetProductDm.fromJson(dynamic json) {
     count = json['count'];
     id = json['_id'];
     product = json['product'];
