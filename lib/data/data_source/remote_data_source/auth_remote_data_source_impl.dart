@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:ecomerce_app/core/api/api_end_point.dart';
 import 'package:ecomerce_app/core/api/api_manager.dart';
 import 'package:ecomerce_app/core/errors/faliures.dart';
+import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:ecomerce_app/data/models/auth/auth_respose.dart';
 import 'package:ecomerce_app/domain/Entity/auth_response.dart';
 import 'package:ecomerce_app/domain/Repositories/data_source/remote_data_source/auth_remote_datasource.dart';
@@ -35,6 +36,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDatasource {
     });
     AuthResponseDm registerResponse = AuthResponseDm.fromJson(response.data);
     if(response.statusCode! >= 200 && response.statusCode! < 300){
+      var token = CachHelper().saveData(key: 'token', value: registerResponse.token);
       return Right(registerResponse);
     }else{
       return Left(ServerError(errMessage: registerResponse.message!));
@@ -59,6 +61,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDatasource {
     });
     AuthResponseDm loginResponse = AuthResponseDm.fromJson(response.data);
     if(response.statusCode! >= 200 && response.statusCode! < 300){
+      var token = CachHelper().saveData(key: 'token', value: loginResponse.token);
       return Right(loginResponse);
     }else{
       return Left(ServerError(errMessage: loginResponse.message!));

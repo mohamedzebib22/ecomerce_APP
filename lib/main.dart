@@ -8,17 +8,27 @@ import 'package:ecomerce_app/Features/profile_tab/views/profile_tab.dart';
 import 'package:ecomerce_app/Features/prpoduct_tap/views/product_tap.dart';
 import 'package:ecomerce_app/Features/register_page/views/register_page.dart';
 import 'package:ecomerce_app/core/di/di.dart';
+import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  String routeName;  
+  await CachHelper().init();
+  var token = CachHelper().getData(key: 'token');
+  if(token == null ){
+    routeName = LoginPage.id;
+  }else{
+    routeName = DefultPage.id;
+  }
   configureDependencies();  
-  runApp(const MyApp());
+  runApp( EcomerceApp(routeName: routeName,));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class EcomerceApp extends StatelessWidget {
+  const EcomerceApp({super.key, required this.routeName});
+  final String routeName;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -40,7 +50,7 @@ class MyApp extends StatelessWidget {
            ProductDetailsPage.id : (context) => ProductDetailsPage(),
            CartPage.id : (context) => CartPage(),
           },
-          initialRoute: DefultPage.id,
+          initialRoute: routeName,
         );
       },
     );
