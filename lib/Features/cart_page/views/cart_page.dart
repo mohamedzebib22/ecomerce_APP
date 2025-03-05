@@ -1,6 +1,7 @@
 import 'package:ecomerce_app/Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_cubit.dart';
 import 'package:ecomerce_app/Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_state.dart';
 import 'package:ecomerce_app/Features/cart_page/views/widgets/product_details.dart';
+import 'package:ecomerce_app/Features/cart_page/views/widgets/sections/show_product_section.dart';
 import 'package:ecomerce_app/core/di/di.dart';
 import 'package:ecomerce_app/core/widgets/add_to_cart_and_checkout.dart';
 import 'package:ecomerce_app/core/widgets/const.dart';
@@ -31,22 +32,14 @@ class CartPage extends StatelessWidget {
         child: BlocBuilder<GetCartProductCubit, GetCartProductState>(
           bloc: viewModel..getProductOfCart(),
           builder: (context, state) {
+            
             return Column(
               children: [
                 viewModel.productList.isEmpty
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
-                    : Expanded(
-                        child: ListView.builder(
-                          itemCount: viewModel.productList.length,
-                          itemBuilder: (context, index) {
-                            return ProductDetails(
-                              cartItemEntity: viewModel.productList[index],
-                            );
-                          },
-                        ),
-                      ),
+                    : ShowProductSection(viewModel: viewModel),
                 AddToCartAndCheckOut(
                   imageIcon: checkOut,
                   price: viewModel.totalPrice,
@@ -59,3 +52,5 @@ class CartPage extends StatelessWidget {
     );
   }
 }
+
+
