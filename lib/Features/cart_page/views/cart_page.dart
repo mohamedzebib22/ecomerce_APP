@@ -39,7 +39,7 @@ class CartPage extends StatelessWidget {
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
-                    : ShowProductSection(viewModel: viewModel),
+                    : ShowProductSection(filterList: viewModel.productList, itemCount: viewModel.productList.length,),
                 AddToCartAndCheckOut(
                   imageIcon: checkOut,
                   price: viewModel.totalPrice,

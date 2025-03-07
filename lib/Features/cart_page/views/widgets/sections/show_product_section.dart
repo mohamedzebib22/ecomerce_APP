@@ -5,19 +5,20 @@ import 'package:flutter/material.dart';
 class ShowProductSection extends StatelessWidget {
   const ShowProductSection({
     super.key,
-    required this.viewModel,
+    required this.filterList, required this.itemCount, 
   });
 
-  final GetCartProductCubit viewModel;
-
+  final int itemCount;
+  final filterList;
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView.builder(
-          itemCount: viewModel.productList.length,
+          itemCount:itemCount,
           itemBuilder: (context, index) {
+            var productFilterList= filterList[index];
             return ProductDetails(
-              cartItemEntity: viewModel.productList[index],
+              cartItemEntity:productFilterList, 
             );
           },
         ),

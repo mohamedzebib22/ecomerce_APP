@@ -5,8 +5,9 @@ import 'package:ecomerce_app/core/api/api_manager.dart';
 import 'package:ecomerce_app/core/errors/faliures.dart';
 import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:ecomerce_app/data/models/get_product/get_product_dm.dart';
-import 'package:ecomerce_app/data/models/post_cart/get_cart_item_dm.dart';
-import 'package:ecomerce_app/data/models/post_cart/post_cart_dm.dart';
+import 'package:ecomerce_app/data/models/crud_cart/rud_cart_item_dm.dart';
+import 'package:ecomerce_app/data/models/crud_cart/post_cart_dm.dart';
+import 'package:ecomerce_app/domain/Entity/rud_cart_item_entity.dart';
 import 'package:ecomerce_app/domain/Repositories/data_source/remote_data_source/get_product_remote_data_source.dart';
 import 'package:injectable/injectable.dart';
 
@@ -54,7 +55,7 @@ class GetProductRemoteImpl extends GetProductRemoteDataSource {
   }
 
   @override
-  Future<Either<Faliures, GetCartItemResponseDm>> getCartProduct()async {
+  Future<Either<Faliures, RudCartItemResponseDm>> getCartProduct()async {
     try{
       var token = CachHelper().getData(key: 'token');
       final Response response =await apiManager.getData(endPoint: ApiEndPoint.getCartProduct,
@@ -62,11 +63,29 @@ class GetProductRemoteImpl extends GetProductRemoteDataSource {
         'token' : token
       }
       );
-      GetCartItemResponseDm getCartItem= GetCartItemResponseDm.fromJson(response.data);
+      RudCartItemResponseDm getCartItem= RudCartItemResponseDm.fromJson(response.data);
       if(response.statusCode! >=200 && response.statusCode! < 300){
         return Right(getCartItem);
       }else{
         return Left(ServerError(errMessage: getCartItem.message!));
+      }
+    }catch (e){
+      return Left(ServerError(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Faliures, RudCartItemResponseDm>> deleteCartItem({required String id})async {
+    try{
+      var token = CachHelper().getData(key: 'token');
+      final Response response = await apiManager.deleteData(endPoint: '${ApiEndPoint.deleteCartProduct}/$id',headers: {
+        'token' : token
+      });
+      RudCartItemResponseDm deleteItemInCart = RudCartItemResponseDm.fromJson(response.data);
+      if(response.statusCode! >= 200 && response.statusCode! < 300){
+        return Right(deleteItemInCart);
+      }else{
+        return Left(ServerError(errMessage: deleteItemInCart.message ??''));
       }
     }catch (e){
       return Left(ServerError(errMessage: e.toString()));

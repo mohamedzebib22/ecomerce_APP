@@ -3,8 +3,8 @@ import 'package:ecomerce_app/data/models/get_product/get_product_dm.dart';
 import 'package:ecomerce_app/domain/Entity/category_and_brand_response.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 
-class GetCartItemResponseEntity {
-  GetCartItemResponseEntity({
+class RudCartItemResponseEntity {
+  RudCartItemResponseEntity({
     this.status,
     this.numOfCartItems,
     this.cartId,
@@ -15,11 +15,11 @@ class GetCartItemResponseEntity {
   String? status;
   num? numOfCartItems;
   String? cartId;
-  GetDataCartEntity? data;
+  RudDataCartEntity? data;
 }
 
-class GetDataCartEntity {
-  GetDataCartEntity({
+class RudDataCartEntity {
+  RudDataCartEntity({
     this.id,
     this.cartOwner,
     this.products,
@@ -32,15 +32,15 @@ class GetDataCartEntity {
   
   String? id;
   String? cartOwner;
-  List<GetCartProductsEntity>? products;
+  List<RudCartProductsEntity>? products;
   String? createdAt;
   String? updatedAt;
   num? v;
   num? totalCartPrice;
 }
 
-class GetCartProductsEntity {
-  GetCartProductsEntity({
+class RudCartProductsEntity {
+  RudCartProductsEntity({
     this.count,
     this.id,
     this.product,

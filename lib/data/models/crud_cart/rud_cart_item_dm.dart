@@ -1,9 +1,9 @@
 import 'package:ecomerce_app/data/models/get_category_and_brand/get_category_and_brand.dart';
 import 'package:ecomerce_app/data/models/get_product/get_product_dm.dart';
-import 'package:ecomerce_app/domain/Entity/get_cart_item_entity.dart';
+import 'package:ecomerce_app/domain/Entity/rud_cart_item_entity.dart';
 
-class GetCartItemResponseDm extends GetCartItemResponseEntity {
-  GetCartItemResponseDm({
+class RudCartItemResponseDm extends RudCartItemResponseEntity {
+  RudCartItemResponseDm({
     super.status,
     super.numOfCartItems,
     super.cartId,
@@ -12,20 +12,20 @@ class GetCartItemResponseDm extends GetCartItemResponseEntity {
     super.data,
   });
 
-  GetCartItemResponseDm.fromJson(dynamic json) {
+  RudCartItemResponseDm.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
     statusMsg = json['statusMsg'];
     numOfCartItems = json['numOfCartItems'];
     cartId = json['cartId'];
-    data = json['data'] != null ? GetDataCartDm.fromJson(json['data']) : null;
+    data = json['data'] != null ? RudDataCartDm.fromJson(json['data']) : null;
   }
   String? message;
   String? statusMsg;
 }
 
-class GetDataCartDm extends GetDataCartEntity {
-  GetDataCartDm({
+class RudDataCartDm extends RudDataCartEntity {
+  RudDataCartDm({
     super.id,
     super.cartOwner,
     super.products,
@@ -35,13 +35,13 @@ class GetDataCartDm extends GetDataCartEntity {
     super.totalCartPrice,
   });
 
-  GetDataCartDm.fromJson(dynamic json) {
+  RudDataCartDm.fromJson(dynamic json) {
     id = json['_id'];
     cartOwner = json['cartOwner'];
     if (json['products'] != null) {
       products = [];
       json['products'].forEach((v) {
-        products?.add(GetCartProductsDm.fromJson(v));
+        products?.add(RudCartProductsDm.fromJson(v));
       });
     }
     createdAt = json['createdAt'];
@@ -51,15 +51,15 @@ class GetDataCartDm extends GetDataCartEntity {
   }
 }
 
-class GetCartProductsDm extends GetCartProductsEntity {
-  GetCartProductsDm({
+class RudCartProductsDm extends RudCartProductsEntity {
+  RudCartProductsDm({
     super.count,
     super.id,
     super.product,
     super.price,
   });
 
-  GetCartProductsDm.fromJson(dynamic json) {
+  RudCartProductsDm.fromJson(dynamic json) {
     count = json['count'];
     id = json['_id'];
     product =

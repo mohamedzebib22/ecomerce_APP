@@ -1,3 +1,4 @@
+import 'package:ecomerce_app/Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_cubit.dart';
 import 'package:ecomerce_app/Features/cart_page/views/cart_page.dart';
 import 'package:ecomerce_app/Features/defult_page/views/defult_page.dart';
 import 'package:ecomerce_app/Features/favourite_tap/views/favourite_tap.dart';
@@ -27,7 +28,8 @@ void main()async {
   configureDependencies();  
   runApp( MultiBlocProvider(
     providers: [
-      BlocProvider(create:(context)  => getIt<GetProductCubit>())
+      BlocProvider(create:(context)  => getIt<GetProductCubit>()),
+      BlocProvider(create:(context)  => getIt<GetCartProductCubit>())
     ],
     child: EcomerceApp(routeName: routeName,)));
 }
