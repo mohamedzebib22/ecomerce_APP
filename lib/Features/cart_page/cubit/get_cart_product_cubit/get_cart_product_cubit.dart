@@ -31,11 +31,12 @@ class GetCartProductCubit extends Cubit<GetCartProductState> {
   deleteItemInCart({required String id})async{
     var either = await deleteCartItemUseCase.invoke(id: id);
     return either.fold((error){
-      emit(DeleteCartProductFaliuer(faliures: error));
+      emit(RudCartProductFaliuer(faliures: error));
     }, (response){
       productList = response.data!.products!;
+      totalPrice = response.data!.totalCartPrice??0;
       print('Delete Sucssefully');
-      emit(DeleteCartProductSucsess(getCartItemResponseEntity: response));
+      emit(RudCartProductSucsess(getCartItemResponseEntity: response));
       
     });
   }

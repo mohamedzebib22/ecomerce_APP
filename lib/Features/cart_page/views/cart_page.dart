@@ -30,27 +30,35 @@ class CartPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.04, vertical: height * 0.02),
         child: BlocBuilder<GetCartProductCubit, GetCartProductState>(
-          bloc: viewModel..getProductOfCart(),
+          bloc: GetCartProductCubit.get(context)..getProductOfCart(),
           builder: (context, state) {
-            
-            return Column(
-              children: [
-                viewModel.productList.isEmpty
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : ShowProductSection(filterList: viewModel.productList, itemCount: viewModel.productList.length,),
-                AddToCartAndCheckOut(
-                  imageIcon: checkOut,
-                  price: viewModel.totalPrice,
-                )
-              ],
-            );
+            if (state is RudCartProductSucsess) {
+              return Column(
+                children: [
+                  ShowProductSection(
+                      filterList:
+                          state.getCartItemResponseEntity.data!.products!,
+                      itemCount: state
+                          .getCartItemResponseEntity.data!.products!.length),
+                  AddToCartAndCheckOut(
+                    imageIcon: checkOut,
+                    price:
+                        state.getCartItemResponseEntity.data!.totalCartPrice!,
+                  )
+                ],
+              );
+            } else if (state is RudCartProductFaliuer) {
+              return Center(
+                child: Text(state.faliures.errMessage),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
           },
         ),
       ),
     );
   }
 }
-
-
