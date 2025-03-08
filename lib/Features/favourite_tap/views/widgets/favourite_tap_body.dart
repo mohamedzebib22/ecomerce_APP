@@ -37,9 +37,7 @@ class FavouriteTapBody extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is WishListSucsess) {
-              return SizedBox(
-                width: double.infinity,
-                height: height * 0.16,
+              return Expanded(
                 child: ListView.builder(
                   itemCount:
                       state.getProductWishListResponseEntity.data!.length,

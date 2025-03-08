@@ -1,6 +1,7 @@
 
 import 'package:ecomerce_app/core/errors/faliures.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_wish_list.dart';
+import 'package:ecomerce_app/domain/Entity/post_and_delete_wish_list.dart';
 
 abstract class WishListState {}
 
@@ -16,4 +17,9 @@ class WishListFailuer extends WishListState {
 
   WishListFailuer({required this.faliures});
 
+}
+class WishListPostSucsess extends WishListState{
+  final PostAndDeleteWishListResponseEntity postAndDeleteItem;
+
+  WishListPostSucsess({required this.postAndDeleteItem});
 }

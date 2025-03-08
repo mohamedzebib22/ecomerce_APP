@@ -24,13 +24,14 @@ class WishListCubit extends Cubit<WishListState> {
     });
   }
 
-  // postItemInWishList({required String id}) async{
-  //   var either =await postWishListUseCase.invoke(id: id);
-  //   emit(WishListLoading());
-  //   return either.fold((error){
-  //     emit(WishListFailuer(faliures: error));
-  //   }, (response){
-  //     emit(WishListSucsess(getProductWishListResponseEntity: response));
-  //   });
-  // }
+  postItemInWishList({required String id}) async{
+    var either =await postWishListUseCase.invoke(id: id);
+    emit(WishListLoading());
+    return either.fold((error){
+      emit(WishListFailuer(faliures: error));
+    }, (response){
+      print('======Product Added Sucssefully');
+      emit(WishListPostSucsess( postAndDeleteItem: response));
+    });
+  }
 }

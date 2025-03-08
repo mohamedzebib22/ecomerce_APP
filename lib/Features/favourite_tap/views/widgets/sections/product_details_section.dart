@@ -1,4 +1,5 @@
 import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
+import 'package:ecomerce_app/core/widgets/custom_text.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
 import 'package:ecomerce_app/core/widgets/cart_button.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_wish_list.dart';
@@ -16,6 +17,7 @@ class ProductDetailsSection extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var errorImage = 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png';
     return Container(
+      margin: EdgeInsets.symmetric(vertical: width*0.02),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.grey, width: 1),
@@ -30,7 +32,8 @@ class ProductDetailsSection extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(productItem.title ??''),
+                    CustomText(title: productItem.title ??''),
+                   
                     IconButton(onPressed: (){}, icon: Icon(Icons.delete_outlined,size: 24,color: Colors.black,))
                   ],
                 ),

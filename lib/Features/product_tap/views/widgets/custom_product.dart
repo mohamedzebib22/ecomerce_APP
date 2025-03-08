@@ -1,6 +1,8 @@
+import 'package:ecomerce_app/Features/favourite_tap/cubit/wish_list_cubit.dart';
 import 'package:ecomerce_app/Features/product_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
 import 'package:ecomerce_app/core/helper/cach_helper.dart';
+import 'package:ecomerce_app/core/widgets/custom_text.dart';
 import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:flutter/material.dart';
@@ -41,25 +43,21 @@ class CustomProduct extends StatelessWidget {
                     image: DecorationImage(
                         image: NetworkImage(product.imageCover ?? 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png'),fit: BoxFit.fill)),
               ),
-              IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border_outlined,color: Colors.blue,))
+              IconButton(onPressed: (){
+                WishListCubit.get(context).postItemInWishList(id: product.id ?? '');
+              }, icon: Icon(Icons.favorite_border_outlined,color: Colors.blue,))
             ],
           ),
-          ListTile(
-            title: Text(
-              product.title ?? '',
-              maxLines: 2,
-              style: TextStyle(fontSize: 12),
-            ),
-           
-          ),
+          CustomText(title: product.title ?? ''),
+          
           CustomPrice(price: product.price ?? 0 ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Text('Review'),
-                  Text('(${product.ratingsAverage})'),
+                  CustomText(title: 'Review'),
+                  CustomText(title: '(${product.ratingsAverage})'),
                   Icon(
                     Icons.star,
                     color: Colors.yellow,
@@ -67,8 +65,7 @@ class CustomProduct extends StatelessWidget {
                 ],
               ),
               InkWell(
-                onTap: (){
-                  
+                onTap: (){ 
                   GetProductCubit.get(context).addToCart(id: product.id??'');
                 },
                 child: Image.asset('assets/images/addicon.png')),

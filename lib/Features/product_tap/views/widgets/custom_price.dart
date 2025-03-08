@@ -1,3 +1,4 @@
+import 'package:ecomerce_app/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomPrice extends StatelessWidget {
@@ -12,7 +13,8 @@ class CustomPrice extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Row(
       children: [
-        Text('$price'),
+        CustomText(title: '$price'),
+       
         SizedBox(width: width*0.02,),
         Text(
           '$price',
