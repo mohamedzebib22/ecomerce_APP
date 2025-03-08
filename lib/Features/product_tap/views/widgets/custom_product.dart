@@ -31,12 +31,18 @@ class CustomProduct extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: width * 0.44,
-            height: height * 0.13,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(product.imageCover ?? 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png'),fit: BoxFit.fill)),
+          Stack(
+            alignment: AlignmentDirectional.topEnd,
+            children: [
+              Container(
+                width: width * 0.44,
+                height: height * 0.13,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(product.imageCover ?? 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png'),fit: BoxFit.fill)),
+              ),
+              IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border_outlined,color: Colors.blue,))
+            ],
           ),
           ListTile(
             title: Text(

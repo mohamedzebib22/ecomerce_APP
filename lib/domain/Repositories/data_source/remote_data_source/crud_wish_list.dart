@@ -1,0 +1,7 @@
+import 'package:dartz/dartz.dart';
+import 'package:ecomerce_app/core/errors/faliures.dart';
+import 'package:ecomerce_app/domain/Entity/post_and_delete_wish_list.dart';
+
+abstract class CrudWishListRemoteEntity {
+  Future<Either<Faliures, PostAndDeleteWishListResponseEntity>> postWishList({required String id});
+}

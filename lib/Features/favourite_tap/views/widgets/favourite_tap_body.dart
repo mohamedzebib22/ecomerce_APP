@@ -24,7 +24,11 @@ class FavouriteTapBody extends StatelessWidget {
               SizedBox(
                 height: height * 0.02,
               ),
-              ProductDetailsSection(),
+
+              SizedBox(
+                width:double.infinity ,
+                height: height*0.16,
+                child: ProductDetailsSection()),
             ],
           );
   }

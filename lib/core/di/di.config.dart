@@ -13,6 +13,8 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../data/data_source/remote_data_source/auth_remote_data_source_impl.dart'
     as _i191;
+import '../../data/data_source/remote_data_source/crud_wish_list_remote_dm.dart'
+    as _i595;
 import '../../data/data_source/remote_data_source/get_all_brand_remote_datasource_Impl.dart'
     as _i894;
 import '../../data/data_source/remote_data_source/get_all_category_remote_datasource_impl.dart'
@@ -20,6 +22,7 @@ import '../../data/data_source/remote_data_source/get_all_category_remote_dataso
 import '../../data/data_source/remote_data_source/get_product_remote_impl.dart'
     as _i1013;
 import '../../data/Repositories/auth_repository_impl.dart' as _i670;
+import '../../data/Repositories/crud_wish_list_dm.dart' as _i242;
 import '../../data/Repositories/get_all_bands_impl.dart' as _i682;
 import '../../data/Repositories/get_product_impl.dart' as _i991;
 import '../../data/Repositories/getallgategory_impl.dart' as _i332;
@@ -28,6 +31,8 @@ import '../../domain/Repositories/crud_product/get_product_repositories.dart'
     as _i367;
 import '../../domain/Repositories/data_source/remote_data_source/auth_remote_datasource.dart'
     as _i428;
+import '../../domain/Repositories/data_source/remote_data_source/crud_wish_list.dart'
+    as _i119;
 import '../../domain/Repositories/data_source/remote_data_source/get_brand_remote_datasource.dart'
     as _i971;
 import '../../domain/Repositories/data_source/remote_data_source/get_gategory_remote_data_source.dart'
@@ -38,6 +43,8 @@ import '../../domain/Repositories/getCategory_and_getBrand/get_all_brand_repo.da
     as _i630;
 import '../../domain/Repositories/getCategory_and_getBrand/get_all_category.dart'
     as _i429;
+import '../../domain/Repositories/wishList/crud_wish_list_repositories.dart'
+    as _i108;
 import '../../domain/use_case/delete_cart_item_use_case.dart' as _i915;
 import '../../domain/use_case/get_brand_use_case.dart' as _i808;
 import '../../domain/use_case/get_cart_item_use_case.dart' as _i316;
@@ -45,6 +52,7 @@ import '../../domain/use_case/get_category_use_case.dart' as _i75;
 import '../../domain/use_case/get_product_use_case.dart' as _i374;
 import '../../domain/use_case/login_usecase.dart' as _i151;
 import '../../domain/use_case/post_cart_use_case.dart' as _i269;
+import '../../domain/use_case/post_wish_list_use_case.dart' as _i45;
 import '../../domain/use_case/register_use_case.dart' as _i78;
 import '../../domain/use_case/updete_count_item_use_case.dart' as _i365;
 import '../../Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_cubit.dart'
@@ -69,6 +77,10 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
+    gh.factory<_i119.CrudWishListRemoteEntity>(() =>
+        _i595.CrudWishListRemoteImpl(apiManager: gh<_i1047.ApiManager>()));
+    gh.factory<_i108.CrudWishListRepositories>(() => _i242.CrudWishListImpl(
+        crudWishListRemoteEntity: gh<_i119.CrudWishListRemoteEntity>()));
     gh.factory<_i971.GetAllBrandRemoteDatasource>(() =>
         _i894.GetAllBrandRemoteDataSourceImpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -91,6 +103,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i78.RegisterUseCase(authRepositories: gh<_i496.AuthRepositories>()));
     gh.factory<_i808.GetBrandUseCase>(() =>
         _i808.GetBrandUseCase(getAllBrandRepo: gh<_i630.GetAllBrandRepo>()));
+    gh.factory<_i45.PostWishListUseCase>(() => _i45.PostWishListUseCase(
+        crudWishListRepositories: gh<_i108.CrudWishListRepositories>()));
     gh.factory<_i75.GetCategoryUseCase>(() => _i75.GetCategoryUseCase(
         getAllCategoryRepositories: gh<_i429.GetAllCategoryRepositories>()));
     gh.factory<_i367.GetProductRepositories>(() => _i991.GetProductImpl(

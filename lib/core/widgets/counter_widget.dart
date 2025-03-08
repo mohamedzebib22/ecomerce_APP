@@ -3,7 +3,7 @@ import 'package:ecomerce_app/core/widgets/const.dart';
 import 'package:flutter/material.dart';
 
 class CounterWidget extends StatelessWidget {
-   CounterWidget({
+  const CounterWidget({
     super.key, required this.countItem, required this.id,  
   });
   final num countItem;
@@ -30,14 +30,14 @@ class CounterWidget extends StatelessWidget {
                 countUpdate--;
                 GetCartProductCubit.get(context).updateItemCount(id: id, count: countUpdate);
               } ,
-              child: ImageIcon(
+              child:const ImageIcon(
                 AssetImage(minceIcon),
                 color: Colors.white,
               ),
             ),
             Text(
               '$countItem',
-              style: TextStyle(
+              style:const TextStyle(
                 color: Colors.white,
               ),
             ),
@@ -47,7 +47,7 @@ class CounterWidget extends StatelessWidget {
                 countUpdate++;
                 GetCartProductCubit.get(context).updateItemCount(id: id, count: countUpdate);
               },
-              child: ImageIcon(
+              child:const ImageIcon(
                 AssetImage(plusIcon),
                 color: Colors.white,
               ),
