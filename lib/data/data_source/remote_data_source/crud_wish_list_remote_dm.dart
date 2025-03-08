@@ -7,6 +7,7 @@ import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:ecomerce_app/data/models/wishList/getItem_wishList/get_product_wish_list.dart';
 import 'package:ecomerce_app/data/models/wishList/post_and_delete_wish_list/post_and_delete_wish_list_dm.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_wish_list.dart';
+import 'package:ecomerce_app/domain/Entity/post_and_delete_wish_list.dart';
 import 'package:ecomerce_app/domain/Repositories/data_source/remote_data_source/crud_wish_list.dart';
 import 'package:injectable/injectable.dart';
 
@@ -53,5 +54,24 @@ class CrudWishListRemoteImpl extends CrudWishListRemoteEntity{
     }catch (e){
       return Left(ServerError(errMessage: e.toString()));
     }
+  }
+  
+  @override
+  Future<Either<Faliures, PostAndDeleteWishListResponseDm>> deleteWishListItem({required String id})async {
+   try{
+    final Response response = await apiManager.deleteData(endPoint: '${ApiEndPoint.deleteWishListItems}/$id',
+    headers: {
+      'token' : token,
+    }
+    );
+    PostAndDeleteWishListResponseDm getProductWishListResponseDm = PostAndDeleteWishListResponseDm.fromJson(response.data);
+    if(response.statusCode! >= 200 && response.statusCode! < 300){
+      return Right(getProductWishListResponseDm);
+    }else{
+      return Left(ServerError(errMessage: getProductWishListResponseDm.message!));
+    }
+   }catch(e){
+    return Left(ServerError(errMessage: e.toString()));
+   }
   }
 }

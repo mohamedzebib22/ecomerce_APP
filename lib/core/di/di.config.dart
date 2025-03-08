@@ -46,6 +46,7 @@ import '../../domain/Repositories/getCategory_and_getBrand/get_all_category.dart
 import '../../domain/Repositories/wishList/crud_wish_list_repositories.dart'
     as _i108;
 import '../../domain/use_case/delete_cart_item_use_case.dart' as _i915;
+import '../../domain/use_case/delete_item_wish_list.dart' as _i109;
 import '../../domain/use_case/get_brand_use_case.dart' as _i808;
 import '../../domain/use_case/get_cart_item_use_case.dart' as _i316;
 import '../../domain/use_case/get_category_use_case.dart' as _i75;
@@ -93,6 +94,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1013.GetProductRemoteImpl(apiManager: gh<_i1047.ApiManager>()));
     gh.factory<_i428.AuthRemoteDatasource>(() =>
         _i191.AuthRemoteDataSourceImpl(apiManager: gh<_i1047.ApiManager>()));
+    gh.factory<_i109.DeleteItemWishList>(() => _i109.DeleteItemWishList(
+        deleteItemWishList: gh<_i108.CrudWishListRepositories>()));
     gh.factory<_i429.GetAllCategoryRepositories>(() => _i332.GetallgategoryImpl(
         getGategoryRemoteDataSource: gh<_i461.GetGategoryRemoteDataSource>()));
     gh.factory<_i496.AuthRepositories>(() => _i670.AuthRepositoryImpl(
@@ -105,33 +108,34 @@ extension GetItInjectableX on _i174.GetIt {
         _i78.RegisterUseCase(authRepositories: gh<_i496.AuthRepositories>()));
     gh.factory<_i808.GetBrandUseCase>(() =>
         _i808.GetBrandUseCase(getAllBrandRepo: gh<_i630.GetAllBrandRepo>()));
-    gh.factory<_i45.PostWishListUseCase>(() => _i45.PostWishListUseCase(
-        crudWishListRepositories: gh<_i108.CrudWishListRepositories>()));
     gh.factory<_i1071.GetItemWishListUseCase>(() =>
         _i1071.GetItemWishListUseCase(
             crudWishListRepositories: gh<_i108.CrudWishListRepositories>()));
+    gh.factory<_i45.PostWishListUseCase>(() => _i45.PostWishListUseCase(
+        crudWishListRepositories: gh<_i108.CrudWishListRepositories>()));
     gh.factory<_i75.GetCategoryUseCase>(() => _i75.GetCategoryUseCase(
         getAllCategoryRepositories: gh<_i429.GetAllCategoryRepositories>()));
     gh.factory<_i367.GetProductRepositories>(() => _i991.GetProductImpl(
         getProductRemoteDataSource: gh<_i793.GetProductRemoteDataSource>()));
-    gh.factory<_i504.WishListCubit>(() => _i504.WishListCubit(
-          gh<_i1071.GetItemWishListUseCase>(),
-          gh<_i45.PostWishListUseCase>(),
-        ));
     gh.factory<_i433.LoginCubit>(
         () => _i433.LoginCubit(gh<_i151.LoginUsecase>()));
     gh.factory<_i456.RegisterCubit>(
         () => _i456.RegisterCubit(gh<_i78.RegisterUseCase>()));
+    gh.factory<_i915.DeleteCartItemUseCase>(() => _i915.DeleteCartItemUseCase(
+        getProductRepositories: gh<_i367.GetProductRepositories>()));
     gh.factory<_i316.GetCartItemUseCase>(() => _i316.GetCartItemUseCase(
         getProductRepositories: gh<_i367.GetProductRepositories>()));
     gh.factory<_i374.GetProductUseCase>(() => _i374.GetProductUseCase(
         getProductRepositories: gh<_i367.GetProductRepositories>()));
     gh.factory<_i269.PostCartUseCase>(() => _i269.PostCartUseCase(
         getProductRepositories: gh<_i367.GetProductRepositories>()));
-    gh.factory<_i915.DeleteCartItemUseCase>(() => _i915.DeleteCartItemUseCase(
-        getProductRepositories: gh<_i367.GetProductRepositories>()));
     gh.factory<_i365.UpdeteCountItemUseCase>(() => _i365.UpdeteCountItemUseCase(
         getProductRepositories: gh<_i367.GetProductRepositories>()));
+    gh.factory<_i504.WishListCubit>(() => _i504.WishListCubit(
+          gh<_i1071.GetItemWishListUseCase>(),
+          gh<_i45.PostWishListUseCase>(),
+          gh<_i109.DeleteItemWishList>(),
+        ));
     gh.factory<_i299.CategoryAndBrandCubit>(() => _i299.CategoryAndBrandCubit(
           gh<_i75.GetCategoryUseCase>(),
           gh<_i808.GetBrandUseCase>(),

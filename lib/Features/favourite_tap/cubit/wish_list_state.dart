@@ -18,8 +18,14 @@ class WishListFailuer extends WishListState {
   WishListFailuer({required this.faliures});
 
 }
+
 class WishListPostSucsess extends WishListState{
   final PostAndDeleteWishListResponseEntity postAndDeleteItem;
 
   WishListPostSucsess({required this.postAndDeleteItem});
+}
+class WishListDeleteSucsess extends WishListState{
+  final PostAndDeleteWishListResponseEntity postAndDeleteItem;
+
+  WishListDeleteSucsess({required this.postAndDeleteItem});
 }

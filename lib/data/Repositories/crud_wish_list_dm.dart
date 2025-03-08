@@ -22,5 +22,11 @@ class CrudWishListImpl extends CrudWishListRepositories {
     var either =await crudWishListRemoteEntity.getWishListItem();
     return either.fold((error)=> Left(error), (response) => Right(response));
   }
+  
+  @override
+  Future<Either<Faliures, PostAndDeleteWishListResponseEntity>> deleteWishListItem({required String id})async {
+    var either =await crudWishListRemoteEntity.deleteWishListItem(id: id);
+    return either.fold((error) => Left(error), (response) => Right(response));
+  }
 
 }

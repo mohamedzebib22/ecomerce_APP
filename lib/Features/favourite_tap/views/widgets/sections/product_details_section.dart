@@ -1,3 +1,4 @@
+import 'package:ecomerce_app/Features/favourite_tap/cubit/wish_list_cubit.dart';
 import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
 import 'package:ecomerce_app/core/widgets/custom_text.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
@@ -34,7 +35,9 @@ class ProductDetailsSection extends StatelessWidget {
                   children: [
                     CustomText(title: productItem.title ??''),
                    
-                    IconButton(onPressed: (){}, icon: Icon(Icons.delete_outlined,size: 24,color: Colors.black,))
+                    IconButton(onPressed: (){
+                      WishListCubit.get(context).deleteProductishList(id: productItem.id??'');
+                    }, icon: Icon(Icons.delete_outlined,size: 24,color: Colors.black,))
                   ],
                 ),
                 SizedBox(
