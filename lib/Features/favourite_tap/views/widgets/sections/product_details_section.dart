@@ -1,20 +1,20 @@
 import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
-import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_product.dart';
 import 'package:ecomerce_app/core/widgets/cart_button.dart';
-import 'package:ecomerce_app/domain/Entity/rud_cart_item_entity.dart';
+import 'package:ecomerce_app/domain/Entity/get_product_wish_list.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsSection extends StatelessWidget {
   const ProductDetailsSection({
-    super.key,
+    super.key, required this.productItem,
   });
  
+  final WishListItemEntity productItem;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
+    var errorImage = 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png';
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -22,7 +22,7 @@ class ProductDetailsSection extends StatelessWidget {
       ),
       child: Row(
         children: [
-          ProductImageSection(image: 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png',),
+          ProductImageSection(image: productItem.imageCover ?? errorImage,),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,7 +30,7 @@ class ProductDetailsSection extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Nike Air Jordon'),
+                    Text(productItem.title ??''),
                     IconButton(onPressed: (){}, icon: Icon(Icons.delete_outlined,size: 24,color: Colors.black,))
                   ],
                 ),
@@ -43,7 +43,7 @@ class ProductDetailsSection extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [CustomPrice(price: 2000,), CartButton(onTap: () {})],
+                  children: [CustomPrice(price: productItem.price ??0,), CartButton(onTap: () {})],
                 ),
               ],
             ),

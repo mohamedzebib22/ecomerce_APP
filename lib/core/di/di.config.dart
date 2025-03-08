@@ -49,6 +49,7 @@ import '../../domain/use_case/delete_cart_item_use_case.dart' as _i915;
 import '../../domain/use_case/get_brand_use_case.dart' as _i808;
 import '../../domain/use_case/get_cart_item_use_case.dart' as _i316;
 import '../../domain/use_case/get_category_use_case.dart' as _i75;
+import '../../domain/use_case/get_item_wish_list_use_case.dart' as _i1071;
 import '../../domain/use_case/get_product_use_case.dart' as _i374;
 import '../../domain/use_case/login_usecase.dart' as _i151;
 import '../../domain/use_case/post_cart_use_case.dart' as _i269;
@@ -57,6 +58,7 @@ import '../../domain/use_case/register_use_case.dart' as _i78;
 import '../../domain/use_case/updete_count_item_use_case.dart' as _i365;
 import '../../Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_cubit.dart'
     as _i529;
+import '../../Features/favourite_tap/cubit/wish_list_cubit.dart' as _i504;
 import '../../Features/home_tap/cubits/cubit/category_cubit.dart' as _i299;
 import '../../Features/login_page/views/cubit/login_cubit/login_cubit.dart'
     as _i433;
@@ -105,10 +107,17 @@ extension GetItInjectableX on _i174.GetIt {
         _i808.GetBrandUseCase(getAllBrandRepo: gh<_i630.GetAllBrandRepo>()));
     gh.factory<_i45.PostWishListUseCase>(() => _i45.PostWishListUseCase(
         crudWishListRepositories: gh<_i108.CrudWishListRepositories>()));
+    gh.factory<_i1071.GetItemWishListUseCase>(() =>
+        _i1071.GetItemWishListUseCase(
+            crudWishListRepositories: gh<_i108.CrudWishListRepositories>()));
     gh.factory<_i75.GetCategoryUseCase>(() => _i75.GetCategoryUseCase(
         getAllCategoryRepositories: gh<_i429.GetAllCategoryRepositories>()));
     gh.factory<_i367.GetProductRepositories>(() => _i991.GetProductImpl(
         getProductRemoteDataSource: gh<_i793.GetProductRemoteDataSource>()));
+    gh.factory<_i504.WishListCubit>(() => _i504.WishListCubit(
+          gh<_i1071.GetItemWishListUseCase>(),
+          gh<_i45.PostWishListUseCase>(),
+        ));
     gh.factory<_i433.LoginCubit>(
         () => _i433.LoginCubit(gh<_i151.LoginUsecase>()));
     gh.factory<_i456.RegisterCubit>(
