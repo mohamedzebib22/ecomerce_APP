@@ -9,6 +9,7 @@ class ProductDetails extends StatelessWidget {
   });
   
  final RudCartProductsEntity cartItemEntity;
+ 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -19,7 +20,8 @@ class ProductDetails extends StatelessWidget {
         border: Border.all(color: Colors.grey, width: 1),
       ),
       child: Row(
-        children: [ProductImageSection(image: cartItemEntity.product!.imageCover??'',), TitleAndColorSection(title: cartItemEntity.product!.title??'', price: cartItemEntity.price??0, countItem: cartItemEntity.count??0, id: cartItemEntity.product!.id ?? '', )],
+        children: [ProductImageSection(image: cartItemEntity.product!.imageCover??'',), TitleAndColorSection(title: cartItemEntity.product!.title??'', price: cartItemEntity.price??0, countItem: cartItemEntity.count??0, id: cartItemEntity.product!.id ?? '', 
+         )],
       ),
     );
   }

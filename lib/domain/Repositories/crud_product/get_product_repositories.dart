@@ -9,4 +9,5 @@ abstract class GetProductRepositories {
   Future<Either<Faliures ,PostCartResponseEntity >> postProduct({required String id});
   Future<Either<Faliures ,RudCartItemResponseEntity >> getCartProduct();
   Future<Either<Faliures ,RudCartItemResponseEntity >> deleteCartItem({required String id});
+  Future<Either<Faliures ,RudCartItemResponseEntity >> updateCountCartItem({required String id,required num count});
 }

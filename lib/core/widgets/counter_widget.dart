@@ -1,11 +1,14 @@
+import 'package:ecomerce_app/Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_cubit.dart';
 import 'package:ecomerce_app/core/widgets/const.dart';
 import 'package:flutter/material.dart';
 
 class CounterWidget extends StatelessWidget {
-  const CounterWidget({
-    super.key, required this.countItem,
+   CounterWidget({
+    super.key, required this.countItem, required this.id,  
   });
   final num countItem;
+  final String id;
+  
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -21,9 +24,16 @@ class CounterWidget extends StatelessWidget {
         child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ImageIcon(
-              AssetImage(minceIcon),
-              color: Colors.white,
+            InkWell(
+              onTap:(){
+                int countUpdate = countItem.toInt();
+                countUpdate--;
+                GetCartProductCubit.get(context).updateItemCount(id: id, count: countUpdate);
+              } ,
+              child: ImageIcon(
+                AssetImage(minceIcon),
+                color: Colors.white,
+              ),
             ),
             Text(
               '$countItem',
@@ -31,9 +41,16 @@ class CounterWidget extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            ImageIcon(
-              AssetImage(plusIcon),
-              color: Colors.white,
+            InkWell(
+              onTap: (){
+                int countUpdate = countItem.toInt();
+                countUpdate++;
+                GetCartProductCubit.get(context).updateItemCount(id: id, count: countUpdate);
+              },
+              child: ImageIcon(
+                AssetImage(plusIcon),
+                color: Colors.white,
+              ),
             ),
           ],
         ));

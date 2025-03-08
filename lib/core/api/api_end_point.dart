@@ -7,4 +7,5 @@ class ApiEndPoint {
   static String postProduct= 'api/v1/cart';
   static String getCartProduct= 'api/v1/cart';
   static String deleteCartProduct= 'api/v1/cart';
+  static String updateCartProduct= 'api/v1/cart';
 }

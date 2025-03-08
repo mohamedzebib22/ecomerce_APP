@@ -4,14 +4,16 @@ import 'package:ecomerce_app/domain/Entity/rud_cart_item_entity.dart';
 import 'package:ecomerce_app/domain/Entity/post_cart_entity.dart';
 import 'package:ecomerce_app/domain/use_case/delete_cart_item_use_case.dart';
 import 'package:ecomerce_app/domain/use_case/get_cart_item_use_case.dart';
+import 'package:ecomerce_app/domain/use_case/updete_count_item_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class GetCartProductCubit extends Cubit<GetCartProductState> {
-  GetCartProductCubit(this.getCartItemUseCase, this.deleteCartItemUseCase) : super(RudCartProductInitial());
+  GetCartProductCubit(this.getCartItemUseCase, this.deleteCartItemUseCase, this.updeteCountItemUseCase) : super(RudCartProductInitial());
   final GetCartItemUseCase getCartItemUseCase;
   final DeleteCartItemUseCase deleteCartItemUseCase;
+  final UpdeteCountItemUseCase updeteCountItemUseCase;
    List<RudCartProductsEntity> productList=[];
    num totalPrice=0;
 
@@ -37,7 +39,15 @@ class GetCartProductCubit extends Cubit<GetCartProductState> {
       totalPrice = response.data!.totalCartPrice??0;
       print('Delete Sucssefully');
       emit(RudCartProductSucsess(getCartItemResponseEntity: response));
-      
+    });
+  }
+  updateItemCount({required String id, required num count})async{
+    var either = await updeteCountItemUseCase.invoke(id: id, count: count);
+    return either.fold((error){
+      emit(RudCartProductFaliuer(faliures: error));
+    }, (response){
+      print('================Updated Sucssefully===============');
+      emit(RudCartProductSucsess(getCartItemResponseEntity: response));
     });
   }
 }

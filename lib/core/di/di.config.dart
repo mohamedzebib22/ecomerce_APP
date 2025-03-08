@@ -46,6 +46,7 @@ import '../../domain/use_case/get_product_use_case.dart' as _i374;
 import '../../domain/use_case/login_usecase.dart' as _i151;
 import '../../domain/use_case/post_cart_use_case.dart' as _i269;
 import '../../domain/use_case/register_use_case.dart' as _i78;
+import '../../domain/use_case/updete_count_item_use_case.dart' as _i365;
 import '../../Features/cart_page/cubit/get_cart_product_cubit/get_cart_product_cubit.dart'
     as _i529;
 import '../../Features/home_tap/cubits/cubit/category_cubit.dart' as _i299;
@@ -106,10 +107,8 @@ extension GetItInjectableX on _i174.GetIt {
         getProductRepositories: gh<_i367.GetProductRepositories>()));
     gh.factory<_i915.DeleteCartItemUseCase>(() => _i915.DeleteCartItemUseCase(
         getProductRepositories: gh<_i367.GetProductRepositories>()));
-    gh.factory<_i529.GetCartProductCubit>(() => _i529.GetCartProductCubit(
-          gh<_i316.GetCartItemUseCase>(),
-          gh<_i915.DeleteCartItemUseCase>(),
-        ));
+    gh.factory<_i365.UpdeteCountItemUseCase>(() => _i365.UpdeteCountItemUseCase(
+        getProductRepositories: gh<_i367.GetProductRepositories>()));
     gh.factory<_i299.CategoryAndBrandCubit>(() => _i299.CategoryAndBrandCubit(
           gh<_i75.GetCategoryUseCase>(),
           gh<_i808.GetBrandUseCase>(),
@@ -117,6 +116,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i867.GetProductCubit>(() => _i867.GetProductCubit(
           gh<_i374.GetProductUseCase>(),
           gh<_i269.PostCartUseCase>(),
+        ));
+    gh.factory<_i529.GetCartProductCubit>(() => _i529.GetCartProductCubit(
+          gh<_i316.GetCartItemUseCase>(),
+          gh<_i915.DeleteCartItemUseCase>(),
+          gh<_i365.UpdeteCountItemUseCase>(),
         ));
     return this;
   }

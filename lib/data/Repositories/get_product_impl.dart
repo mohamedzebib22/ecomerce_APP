@@ -37,5 +37,11 @@ class GetProductImpl extends GetProductRepositories {
     var either = await getProductRemoteDataSource.deleteCartItem(id: id);
     return either.fold((error) =>Left(error), (response) => Right(response));
   }
+  
+  @override
+  Future<Either<Faliures, RudCartItemResponseEntity>> updateCountCartItem({required String id, required num count}) async{
+   var either = await getProductRemoteDataSource.updateCountCartItem(id: id, count: count);
+   return either.fold((error)=>Left(error), (response) => Right(response));
+  }
 
 }

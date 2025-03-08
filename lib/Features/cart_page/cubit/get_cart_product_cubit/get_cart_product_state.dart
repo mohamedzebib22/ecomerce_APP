@@ -19,14 +19,3 @@ class RudCartProductFaliuer extends GetCartProductState {
 
 }
 
-class DeleteCartProductSucsess extends GetCartProductState {
-  final RudCartItemResponseEntity getCartItemResponseEntity;
-
-  DeleteCartProductSucsess({required this.getCartItemResponseEntity});
-}
-class DeleteCartProductFaliuer extends GetCartProductState {
-  final Faliures faliures;
-
-  DeleteCartProductFaliuer({required this.faliures});
-
-}

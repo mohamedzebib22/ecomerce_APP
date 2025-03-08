@@ -40,7 +40,7 @@ class CountProductSection extends StatelessWidget {
               Text('$rating'),
               Text('(${quantity})'),
               Spacer(),
-              CounterWidget(countItem: 0,),
+              CounterWidget(countItem: 0, id: '', ),
             ],
           ),
         )

@@ -14,7 +14,7 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: GetProductRemoteDataSource)
 class GetProductRemoteImpl extends GetProductRemoteDataSource {
   final ApiManager apiManager;
-
+  var token = CachHelper().getData(key: 'token');
   GetProductRemoteImpl({required this.apiManager});
   @override
   Future<Either<Faliures, GetProductDm>> getProduct() async {
@@ -36,7 +36,7 @@ class GetProductRemoteImpl extends GetProductRemoteDataSource {
   Future<Either<Faliures, PostCartResponseDm>> postProduct(
       {required String id}) async {
     try {
-      var token = CachHelper().getData(key: 'token');
+     
       final Response response = await apiManager.postData(
           endPoint: ApiEndPoint.postProduct,
           data: {'productId': id},
@@ -57,7 +57,7 @@ class GetProductRemoteImpl extends GetProductRemoteDataSource {
   @override
   Future<Either<Faliures, RudCartItemResponseDm>> getCartProduct()async {
     try{
-      var token = CachHelper().getData(key: 'token');
+    
       final Response response =await apiManager.getData(endPoint: ApiEndPoint.getCartProduct,
       headers: {
         'token' : token
@@ -77,7 +77,7 @@ class GetProductRemoteImpl extends GetProductRemoteDataSource {
   @override
   Future<Either<Faliures, RudCartItemResponseDm>> deleteCartItem({required String id})async {
     try{
-      var token = CachHelper().getData(key: 'token');
+      
       final Response response = await apiManager.deleteData(endPoint: '${ApiEndPoint.deleteCartProduct}/$id',headers: {
         'token' : token
       });
@@ -86,6 +86,28 @@ class GetProductRemoteImpl extends GetProductRemoteDataSource {
         return Right(deleteItemInCart);
       }else{
         return Left(ServerError(errMessage: deleteItemInCart.message ??''));
+      }
+    }catch (e){
+      return Left(ServerError(errMessage: e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Faliures, RudCartItemResponseEntity>> updateCountCartItem({required String id, required num count}) async{
+    try{
+      final Response response = await apiManager.updateData(endPoint: '${ApiEndPoint.updateCartProduct}/$id',
+      headers: {
+        'token' : token
+      },
+      data: {
+        'count' : count
+      }
+      );
+      RudCartItemResponseDm updateCountItem = RudCartItemResponseDm.fromJson(response.data);
+      if(response.statusCode! >=200 && response.statusCode! < 300){
+        return Right(updateCountItem);
+      }else{
+        return Left(ServerError(errMessage: updateCountItem.message??'Invalid'));
       }
     }catch (e){
       return Left(ServerError(errMessage: e.toString()));

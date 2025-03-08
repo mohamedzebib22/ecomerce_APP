@@ -15,6 +15,7 @@ class TitleAndColorSection extends StatelessWidget {
   final num price;
   final num countItem;
   final String id;
+  
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -43,7 +44,7 @@ class TitleAndColorSection extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [CustomPrice(price: price,), CounterWidget(countItem: countItem,)],
+            children: [CustomPrice(price: price,), CounterWidget(countItem: countItem, id: id,  )],
           ),
          
         ],
