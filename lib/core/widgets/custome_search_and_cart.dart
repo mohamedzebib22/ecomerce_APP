@@ -10,19 +10,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomeSearchAndCart extends StatelessWidget {
-  CustomeSearchAndCart({super.key ,this.titleController});
+  CustomeSearchAndCart({super.key ,this.titleController,this.onChanged});
   var cartItemNumber;
   TextEditingController? titleController;
-  
+  Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: CustomTextFeild(
-            onChanged:(text){
-             WishListCubit.get(context).changeText(text);
-            },
+            onChanged:onChanged,
             controller:titleController ,
             radius: 26,
             prefix: Icon(Icons.search),

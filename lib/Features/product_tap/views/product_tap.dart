@@ -26,30 +26,49 @@ class ProductTap extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomeSearchAndCart(),
+            CustomeSearchAndCart(
+              titleController: viewModel.filterTitle,
+              onChanged: (title) {
+                GetProductCubit.get(context).searchProduct(title);
+              },
+            ),
             BlocBuilder<GetProductCubit, GetProductState>(
-              bloc: viewModel..getProduct(),
+              bloc: GetProductCubit.get(context)..getProduct(),
               builder: (context, state) {
-                return viewModel.productList.isEmpty ? Center(child: CircularProgressIndicator(),) :
-                Expanded(
-                  
-                  child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 2 /3.2.h,
-                      ),
-                      itemCount: viewModel.productList.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: (){
-                            Navigator.pushNamed(context, ProductDetailsPage.id,arguments: viewModel.productList[index]);
-                          },
-                          child: CustomProduct(
-                            product: viewModel.productList[index], 
-                          ),
-                        );
-                      }),
-                );
+                
+                if (state is GetProductSucsess) {
+                  var productList =state.getProductEntity.data;
+                var filterList = productList!.where((item) {
+                  bool filterTitle = item.title!
+                          .toLowerCase()
+                          .contains(viewModel.filterTitle.text.toLowerCase()) ??
+                      false;
+                  return filterTitle;
+                }).toList();
+                  return Expanded(
+                    child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 2 / 3.2.h,
+                        ),
+                        itemCount: filterList.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, ProductDetailsPage.id,
+                                  arguments: viewModel.productList[index]);
+                            },
+                            child: CustomProduct(
+                              product: filterList[index],
+                            ),
+                          );
+                        }),
+                  );
+                }else if(state is GetProductLoading){
+                  return Center(child: CircularProgressIndicator(),);
+                }else{
+                  return Center(child: Text(state.toString()),);
+                }
               },
             ),
           ],

@@ -29,4 +29,3 @@ class WishListDeleteSucsess extends WishListState{
 
   WishListDeleteSucsess({required this.postAndDeleteItem});
 }
-class ChangeText extends WishListState{}

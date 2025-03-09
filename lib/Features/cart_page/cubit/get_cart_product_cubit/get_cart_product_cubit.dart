@@ -10,44 +10,51 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetCartProductCubit extends Cubit<GetCartProductState> {
-  GetCartProductCubit(this.getCartItemUseCase, this.deleteCartItemUseCase, this.updeteCountItemUseCase) : super(RudCartProductInitial());
+  GetCartProductCubit(this.getCartItemUseCase, this.deleteCartItemUseCase,
+      this.updeteCountItemUseCase)
+      : super(RudCartProductInitial());
   final GetCartItemUseCase getCartItemUseCase;
   final DeleteCartItemUseCase deleteCartItemUseCase;
   final UpdeteCountItemUseCase updeteCountItemUseCase;
-   List<RudCartProductsEntity> productList=[];
-   num totalPrice=0;
+  List<RudCartProductsEntity> productList = [];
+  
+
+  num totalPrice = 0;
 
   static GetCartProductCubit get(context) => BlocProvider.of(context);
-  getProductOfCart()async{
+  getProductOfCart() async {
     emit(RudCartProductLoading());
     var either = await getCartItemUseCase.invoke();
-    return either.fold((error){
+    return either.fold((error) {
       emit(RudCartProductFaliuer(faliures: error));
-    }, (response){
+    }, (response) {
       productList = response.data!.products!;
-      totalPrice = response.data!.totalCartPrice??0;
+      totalPrice = response.data!.totalCartPrice ?? 0;
       emit(RudCartProductSucsess(getCartItemResponseEntity: response));
     });
   }
 
-  deleteItemInCart({required String id})async{
+  deleteItemInCart({required String id}) async {
     var either = await deleteCartItemUseCase.invoke(id: id);
-    return either.fold((error){
+    return either.fold((error) {
       emit(RudCartProductFaliuer(faliures: error));
-    }, (response){
+    }, (response) {
       productList = response.data!.products!;
-      totalPrice = response.data!.totalCartPrice??0;
+      totalPrice = response.data!.totalCartPrice ?? 0;
       print('Delete Sucssefully');
       emit(RudCartProductSucsess(getCartItemResponseEntity: response));
     });
   }
-  updateItemCount({required String id, required num count})async{
+
+  updateItemCount({required String id, required num count}) async {
     var either = await updeteCountItemUseCase.invoke(id: id, count: count);
-    return either.fold((error){
+    return either.fold((error) {
       emit(RudCartProductFaliuer(faliures: error));
-    }, (response){
+    }, (response) {
       print('================Updated Sucssefully===============');
       emit(RudCartProductSucsess(getCartItemResponseEntity: response));
     });
   }
+
+  
 }

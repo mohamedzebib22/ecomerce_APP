@@ -26,7 +26,9 @@ class FavouriteTapBody extends StatelessWidget {
         SizedBox(
           height: height * 0.02,
         ),
-        CustomeSearchAndCart(titleController:filterTitle ,),
+        CustomeSearchAndCart(titleController:filterTitle ,onChanged: (title){
+          WishListCubit.get(context).changeText(title);
+        },),
         SizedBox(
           height: height * 0.02,
         ),
@@ -38,8 +40,7 @@ class FavouriteTapBody extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is WishListSucsess) {
-              var favouriteList = state.getProductWishListResponseEntity.data;
-              
+              var favouriteList = state.getProductWishListResponseEntity.data;  
               var filterList = favouriteList!.where((item){
                 bool titleFilter = item.title!.toLowerCase().contains(filterTitle.text.toLowerCase()) ?? false;
                 return titleFilter;

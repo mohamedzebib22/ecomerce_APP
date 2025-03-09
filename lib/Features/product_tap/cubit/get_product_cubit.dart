@@ -4,6 +4,7 @@ import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:ecomerce_app/domain/use_case/get_product_use_case.dart';
 import 'package:ecomerce_app/domain/use_case/post_cart_use_case.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,8 +17,9 @@ class GetProductCubit extends Cubit<GetProductState> {
   final GetProductUseCase getProductUseCase;
   final PostCartUseCase postCartUseCase;
   List<ProductEntity> productList=[];
+  List<ProductEntity> filterList=[];
   int numOfCartItems = 0;
-
+  TextEditingController filterTitle= TextEditingController();
   static GetProductCubit get(context) => BlocProvider.of(context);
   getProduct()async{
     emit(GetProductLoading());
@@ -26,6 +28,7 @@ class GetProductCubit extends Cubit<GetProductState> {
       emit(GetProductFaliur(faliures: error));
     }, (response){
       productList = response.data!;
+      filterList = productList;
       emit(GetProductSucsess(getProductEntity: response));
     });
   }
@@ -43,5 +46,11 @@ class GetProductCubit extends Cubit<GetProductState> {
       emit(PostProductSucsess(postProduct: response));
       
     });
+  }
+  searchProduct(String title){
+    filterList = productList.where((item){
+      return item.title!.toLowerCase().contains(title.toLowerCase());
+    }).toList();
+    emit(GetProductSucsess(getProductEntity: GetProductEntity(data: filterList)));
   }
 }
