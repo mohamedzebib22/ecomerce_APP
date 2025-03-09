@@ -44,7 +44,7 @@ class ProductDetailsSection extends StatelessWidget {
                        title: 'Delete', 
                        body: 'Are You Sure To Delete ${productItem.title}!!!!',
                       confirm: (){
-                        WishListCubit.get(context).deleteProductishList(id: productItem.id??'');
+                        WishListCubit.get(context).deleteProductishList(id: productItem.id??'',);
                         Navigator.pop(context);
                       });
                     }, icon: Icon(Icons.delete_outlined,size: 24,color: Colors.black,))

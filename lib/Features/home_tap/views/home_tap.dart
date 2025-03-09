@@ -5,6 +5,7 @@ import 'package:ecomerce_app/Features/home_tap/views/widgets/sections/brands_sec
 import 'package:ecomerce_app/Features/home_tap/views/widgets/sections/category_section_item.dart';
 import 'package:ecomerce_app/core/di/di.dart';
 import 'package:ecomerce_app/core/widgets/category_and_brand_title.dart';
+import 'package:ecomerce_app/core/widgets/custom_text.dart';
 import 'package:ecomerce_app/core/widgets/custome_search_and_cart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,8 @@ class _HomeTapState extends State<HomeTap> {
                   bloc: viewModel..getAllBrands(),
                   builder: (context, state) {
                     return viewModel.brandList.isEmpty
-                        ? Center(
-                            child: CircularProgressIndicator(),
+                        ?const Center(
+                            child: CustomText(title: 'Loading'),
                           )
                         : BrandsSectionItems(
                             itemCount: viewModel.brandList.length,

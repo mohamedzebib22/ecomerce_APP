@@ -1,9 +1,7 @@
 import 'package:ecomerce_app/Features/favourite_tap/cubit/wish_list_cubit.dart';
 import 'package:ecomerce_app/Features/product_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
-import 'package:ecomerce_app/core/helper/cach_helper.dart';
 import 'package:ecomerce_app/core/widgets/custom_text.dart';
-import 'package:ecomerce_app/core/widgets/custom_text_feild.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +42,7 @@ class CustomProduct extends StatelessWidget {
                         image: NetworkImage(product.imageCover ?? 'https://cdn.pixabay.com/photo/2015/06/09/16/12/error-803716_1280.png'),fit: BoxFit.fill)),
               ),
               IconButton(onPressed: (){
-                WishListCubit.get(context).postItemInWishList(id: product.id ?? '');
+                WishListCubit.get(context).postItemInWishList(id: product.id ?? '',context: context);
               }, icon: Icon(Icons.favorite_border_outlined,color: Colors.blue,))
             ],
           ),
