@@ -56,7 +56,7 @@ class ProductTap extends StatelessWidget {
                           return InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, ProductDetailsPage.id,
-                                  arguments: viewModel.productList[index]);
+                                  arguments: productList[index]);
                             },
                             child: CustomProduct(
                               product: filterList[index],
