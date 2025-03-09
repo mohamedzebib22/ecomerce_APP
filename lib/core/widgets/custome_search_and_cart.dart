@@ -1,4 +1,5 @@
 import 'package:ecomerce_app/Features/cart_page/views/cart_page.dart';
+import 'package:ecomerce_app/Features/favourite_tap/cubit/wish_list_cubit.dart';
 import 'package:ecomerce_app/Features/home_tap/views/widgets/sections/ads_section.dart';
 import 'package:ecomerce_app/Features/product_tap/cubit/get_product_cubit.dart';
 import 'package:ecomerce_app/Features/product_tap/cubit/get_product_state.dart';
@@ -9,14 +10,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomeSearchAndCart extends StatelessWidget {
-  CustomeSearchAndCart({super.key});
+  CustomeSearchAndCart({super.key ,this.titleController});
   var cartItemNumber;
+  TextEditingController? titleController;
+  
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: CustomTextFeild(
+            onChanged:(text){
+             WishListCubit.get(context).changeText(text);
+            },
+            controller:titleController ,
             radius: 26,
             prefix: Icon(Icons.search),
             hintText: 'what do you search for?',

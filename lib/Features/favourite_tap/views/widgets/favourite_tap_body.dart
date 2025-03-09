@@ -1,6 +1,6 @@
 import 'package:ecomerce_app/Features/favourite_tap/cubit/wish_list_cubit.dart';
 import 'package:ecomerce_app/Features/favourite_tap/cubit/wish_list_state.dart';
-import 'package:ecomerce_app/Features/favourite_tap/views/widgets/sections/product_details_section.dart';
+import 'package:ecomerce_app/Features/favourite_tap/views/widgets/sections/show_item_favourite_section.dart';
 import 'package:ecomerce_app/core/di/di.dart';
 import 'package:ecomerce_app/core/widgets/custome_search_and_cart.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,7 @@ class FavouriteTapBody extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     WishListCubit viewModel = getIt<WishListCubit>();
+    var filterTitle = viewModel.titleController;
     return Column(
       children: [
         Row(
@@ -25,7 +26,7 @@ class FavouriteTapBody extends StatelessWidget {
         SizedBox(
           height: height * 0.02,
         ),
-        CustomeSearchAndCart(),
+        CustomeSearchAndCart(titleController:filterTitle ,),
         SizedBox(
           height: height * 0.02,
         ),
@@ -33,23 +34,25 @@ class FavouriteTapBody extends StatelessWidget {
           bloc: WishListCubit.get(context)..getItemInWishList(),
           builder: (context, state) {
             if (state is WishListLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is WishListSucsess) {
-              return Expanded(
-                child: ListView.builder(
-                  itemCount:
-                      state.getProductWishListResponseEntity.data!.length,
-                  itemBuilder: (context, index) {
-                    return ProductDetailsSection(
-                        productItem: state
-                            .getProductWishListResponseEntity.data![index]);
-                  }
-                ),
-              );
+              var favouriteList = state.getProductWishListResponseEntity.data;
+              
+              var filterList = favouriteList!.where((item){
+                bool titleFilter = item.title!.toLowerCase().contains(filterTitle.text.toLowerCase()) ?? false;
+                return titleFilter;
+              }).toList();
+              return ShowItemFavourite(
+                
+                favouriteItemList: filterList, 
+                itemCount: filterList.length,);
+
             }else if (state is WishListFailuer){
               return Center(child: Text(state.faliures.errMessage),);
+            }else if(state is WishListDeleteSucsess){
+              
             }
             return Container();
           },
