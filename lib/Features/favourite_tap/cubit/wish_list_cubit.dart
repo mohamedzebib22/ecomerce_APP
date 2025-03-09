@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecomerce_app/Features/favourite_tap/cubit/wish_list_state.dart';
+import 'package:ecomerce_app/core/widgets/show_dialog_msg.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_wish_list.dart';
 import 'package:ecomerce_app/domain/use_case/delete_item_wish_list.dart';
 import 'package:ecomerce_app/domain/use_case/get_item_wish_list_use_case.dart';
@@ -7,6 +8,7 @@ import 'package:ecomerce_app/domain/use_case/post_wish_list_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quickalert/models/quickalert_type.dart';
 
 @injectable
 class WishListCubit extends Cubit<WishListState> {
@@ -34,12 +36,15 @@ class WishListCubit extends Cubit<WishListState> {
     });
   }
 
-  postItemInWishList({required String id}) async {
+  postItemInWishList({required String id , context}) async {
     var either = await postWishListUseCase.invoke(id: id);
-    emit(WishListLoading());
     return either.fold((error) {
       emit(WishListFailuer(faliures: error));
     }, (response) {
+      ShowDialogMsg.showDialogtext(context: context, confirmText: 'AddToWishList',type: QuickAlertType.success, title: 'Add', body: 'Are you Added This Item in WishList',
+       confirm: (){
+        Navigator.pop(context);
+       });
       print('======Product Added Sucssefully');
       emit(WishListPostSucsess(postAndDeleteItem: response));
     });

@@ -51,9 +51,22 @@ class FavouriteTapBody extends StatelessWidget {
                 itemCount: filterList.length,);
 
             }else if (state is WishListFailuer){
-              return Center(child: Text(state.faliures.errMessage),);
-            }else if(state is WishListDeleteSucsess){
-              
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                Text('Some Thing Went Wrong Please Try Again!!!!!!!!'),
+                MaterialButton(
+                  height: height*0.08,
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  focusColor: Colors.green,
+                  hoverColor: Colors.red,
+                  child: Text('Try Again'),
+                  onPressed: (){
+                  WishListCubit.get(context).getItemInWishList();
+                })
+              ],);
             }
             return Container();
           },

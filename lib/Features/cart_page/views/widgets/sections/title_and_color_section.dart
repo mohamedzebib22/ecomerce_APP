@@ -2,7 +2,9 @@ import 'package:ecomerce_app/Features/cart_page/cubit/get_cart_product_cubit/get
 import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dart';
 import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_product.dart';
 import 'package:ecomerce_app/core/widgets/counter_widget.dart';
+import 'package:ecomerce_app/core/widgets/show_dialog_msg.dart';
 import 'package:flutter/material.dart';
+import 'package:quickalert/quickalert.dart';
 
 class TitleAndColorSection extends StatelessWidget {
   const TitleAndColorSection({
@@ -27,12 +29,19 @@ class TitleAndColorSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title,style: TextStyle(fontSize: 8,overflow:TextOverflow.ellipsis ),),
+              Text(title,style:const TextStyle(fontSize: 8,overflow:TextOverflow.ellipsis ),),
               IconButton(onPressed: (){
-                GetCartProductCubit.get(context).deleteItemInCart(id: id);
-
+               // 
+                ShowDialogMsg.showDialogtext(context: context,
+                 type: QuickAlertType.warning, 
+                 title: 'Delete ',
+                  body: 'Are You Sure To Delete $title !!!!', 
+                  confirm: (){
+                    GetCartProductCubit.get(context).deleteItemInCart(id: id);
+                    Navigator.pop(context);
+                  });
               
-              }, icon: Icon(Icons.delete_forever_outlined,size: 24,color: Colors.black,))
+              }, icon:const Icon(Icons.delete_forever_outlined,size: 24,color: Colors.black,))
             ],
           ),
           SizedBox(

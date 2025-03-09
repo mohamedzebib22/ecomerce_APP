@@ -5,6 +5,7 @@ import 'package:ecomerce_app/Features/cart_page/views/widgets/sections/show_prod
 import 'package:ecomerce_app/core/di/di.dart';
 import 'package:ecomerce_app/core/widgets/add_to_cart_and_checkout.dart';
 import 'package:ecomerce_app/core/widgets/const.dart';
+import 'package:ecomerce_app/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,9 +49,22 @@ class CartPage extends StatelessWidget {
                 ],
               );
             } else if (state is RudCartProductFaliuer) {
-              return Center(
-                child: Text(state.faliures.errMessage),
-              );
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                Text('Some Thing Went Wrong Please Try Again!!!!!!!!'),
+                MaterialButton(
+                  height: height*0.08,
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  focusColor: Colors.green,
+                  hoverColor: Colors.red,
+                  child: Text('Try Again'),
+                  onPressed: (){
+                  GetCartProductCubit.get(context).getProductOfCart();
+                })
+              ],);
             } else {
               return Center(
                 child: CircularProgressIndicator(),

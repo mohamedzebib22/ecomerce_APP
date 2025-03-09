@@ -3,8 +3,10 @@ import 'package:ecomerce_app/Features/product_tap/views/widgets/custom_price.dar
 import 'package:ecomerce_app/core/widgets/custom_text.dart';
 import 'package:ecomerce_app/core/widgets/product_image_section.dart';
 import 'package:ecomerce_app/core/widgets/cart_button.dart';
+import 'package:ecomerce_app/core/widgets/show_dialog_msg.dart';
 import 'package:ecomerce_app/domain/Entity/get_product_wish_list.dart';
 import 'package:flutter/material.dart';
+import 'package:quickalert/quickalert.dart';
 
 class ProductDetailsSection extends StatelessWidget {
   const ProductDetailsSection({
@@ -36,7 +38,15 @@ class ProductDetailsSection extends StatelessWidget {
                     CustomText(title: productItem.title ??''),
                    
                     IconButton(onPressed: (){
-                      WishListCubit.get(context).deleteProductishList(id: productItem.id??'');
+                      
+                      ShowDialogMsg.showDialogtext(context: context, 
+                      type: QuickAlertType.warning,
+                       title: 'Delete', 
+                       body: 'Are You Sure To Delete ${productItem.title}!!!!',
+                      confirm: (){
+                        WishListCubit.get(context).deleteProductishList(id: productItem.id??'');
+                        Navigator.pop(context);
+                      });
                     }, icon: Icon(Icons.delete_outlined,size: 24,color: Colors.black,))
                   ],
                 ),

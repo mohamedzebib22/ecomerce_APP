@@ -66,7 +66,7 @@ class CustomProduct extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){ 
-                  GetProductCubit.get(context).addToCart(id: product.id??'');
+                  GetProductCubit.get(context).addToCart(id: product.id??'',context: context);
                 },
                 child: Image.asset('assets/images/addicon.png')),
             ],

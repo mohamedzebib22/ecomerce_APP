@@ -36,7 +36,9 @@ class ProductTap extends StatelessWidget {
               bloc: GetProductCubit.get(context)..getProduct(),
               builder: (context, state) {
                 
-                if (state is GetProductSucsess) {
+                if(state is GetProductLoading){
+                  return Center(child: CircularProgressIndicator(),);
+                }if (state is GetProductSucsess) {
                   var productList =state.getProductEntity.data;
                 var filterList = productList!.where((item) {
                   bool filterTitle = item.title!
@@ -64,11 +66,26 @@ class ProductTap extends StatelessWidget {
                           );
                         }),
                   );
-                }else if(state is GetProductLoading){
-                  return Center(child: CircularProgressIndicator(),);
-                }else{
-                  return Center(child: Text(state.toString()),);
                 }
+                else if(state is GetProductFaliur){
+                  return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                Text('Some Thing Went Wrong Please Try Again!!!!!!!!'),
+                MaterialButton(
+                  height: height*0.08,
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  focusColor: Colors.green,
+                  hoverColor: Colors.red,
+                  child: Text('Try Again'),
+                  onPressed: (){
+                  GetProductCubit.get(context).getProduct();
+                })
+              ],);
+                }
+                return Container();
               },
             ),
           ],

@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomeSearchAndCart extends StatelessWidget {
-  CustomeSearchAndCart({super.key ,this.titleController,this.onChanged});
+  CustomeSearchAndCart({super.key, this.titleController, this.onChanged});
   var cartItemNumber;
   TextEditingController? titleController;
   Function(String)? onChanged;
@@ -20,8 +20,8 @@ class CustomeSearchAndCart extends StatelessWidget {
       children: [
         Expanded(
           child: CustomTextFeild(
-            onChanged:onChanged,
-            controller:titleController ,
+            onChanged: onChanged,
+            controller: titleController,
             radius: 26,
             prefix: Icon(Icons.search),
             hintText: 'what do you search for?',
@@ -31,9 +31,9 @@ class CustomeSearchAndCart extends StatelessWidget {
         ),
         BlocBuilder<GetProductCubit, GetProductState>(
           builder: (context, state) {
-            if(state is PostProductSucsess ){
-              cartItemNumber  = state.postProduct.numOfCartItems;
-            }else{
+            if (state is PostProductSucsess) {
+              cartItemNumber = state.postProduct.numOfCartItems;
+            } else {
               cartItemNumber = CachHelper().getData(key: 'numOfCartItems');
             }
             return Badge(
